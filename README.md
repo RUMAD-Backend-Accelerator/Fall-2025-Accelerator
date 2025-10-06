@@ -12,9 +12,13 @@ cd <repo-name>
 ```
 ## 2. Create a new branch for your work
 Use your name so we can identify you easily:
-```git checkout -b yourname/homework```
+```
+git checkout -b yourname/homework
+```
 Example:
-```git checkout -b Hiya/homework```
+```
+git checkout -b Hiya/homework
+```
 
 # 3. Work locally on your assignment
 * Edit or add files as instructed.
