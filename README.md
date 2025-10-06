@@ -30,11 +30,11 @@ git commit -m "Finished problem 1"
 ## 4. Push your branch to GitHub
 This publishes your branch so instructors can review it.
 
-*The first time you create your branch and publish it:
+* The first time you create your branch and publish it:
 ```
 git push -u origin hw1-yourname
 ```
-*Every time after, you can just do this while on your branch:
+* Every time after, you can just do this while on your branch:
 ```
 git push
 ```
