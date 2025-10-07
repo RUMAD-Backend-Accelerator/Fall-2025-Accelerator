@@ -1,0 +1,3 @@
+# ignore node modules if used locally
+node_modules/
+.env
