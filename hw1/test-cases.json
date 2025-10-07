@@ -1,0 +1,56 @@
+{
+  "p1": [
+    {
+      "name": "p1-full-catalog",
+      "input": { "subjectsPath": "../subjects.json" },
+      "notes": "Run on full subjects catalog (smoke).",
+      "expected": null
+    },
+    {
+      "name": "p1-small-sample",
+      "input": { "subjectsPath": "../subjects.json", "limit": 5 },
+      "notes": "Small sample run (limit used by some implementations).",
+      "expected": null
+    },
+    {
+      "name": "p1-edge-empty",
+      "input": { "subjectsPath": "../subjects.json", "filter": "NON-EXISTENT" },
+      "notes": "Edge case: expect empty or handled gracefully by implementation.",
+      "expected": null
+    }
+  ],
+  "p2": [
+    {
+      "name": "p2-intro-acct",
+      "input": { "subjectsPath": "../subjects.json", "courseIdentifier": "INTRO FINANCIAL ACCT" },
+      "notes": "Look up a common course by title/identifier.",
+      "expected": null
+    },
+    {
+      "name": "p2-deep-learning",
+      "input": { "subjectsPath": "../subjects.json", "courseIdentifier": "DEEP LEARNING" },
+      "notes": "Another course title to test matching behavior.",
+      "expected": null
+    },
+    {
+      "name": "p2-nonexistent",
+      "input": { "subjectsPath": "../subjects.json", "courseIdentifier": "TOTALLY FAKE COURSE" },
+      "notes": "Nonexistent course should be handled gracefully.",
+      "expected": null
+    }
+  ],
+  "p3": [
+    {
+      "name": "p3-full-catalog",
+      "input": { "subjectsPath": "../subjects.json" },
+      "notes": "Run full-catalog analysis (smoke).",
+      "expected": null
+    },
+    {
+      "name": "p3-sample",
+      "input": { "subjectsPath": "../subjects.json", "sample": true },
+      "notes": "Sample run flag for implementations that accept options.",
+      "expected": null
+    }
+  ]
+}
