@@ -7,7 +7,7 @@ Below is a guide on how to make your own private branch and upload your submissi
 ## 1. Clone the repository
 
 ```
-git clone https://github.com/<org-or-course-name>/<repo-name>.git
+git clone https://github.com/RUMAD-Backend-Accelerator/Fall-2025-Accelerator.git
 cd <repo-name>
 ```
 ## 2. Create a new branch for your work
