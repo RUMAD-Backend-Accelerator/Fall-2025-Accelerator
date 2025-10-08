@@ -2,13 +2,17 @@
 // Simple runner to call functions from regex-practice.js.
 // Run with: `node regex-test.js`.
 
+// Clear the console before running examples.
+// This keeps the terminal output focused on the current run.
+console.clear();
+
 const rp = require('./regex-practice');
 
 console.log('Running regex-test.js examples');
 
 // 1) hasDigit
-// console.log('hasDigit("abc123") =>', rp.hasDigit('abc123'));
-// console.log('hasDigit("no-digits") =>', rp.hasDigit('no-digits'));
+console.log('hasDigit("abc123") =>', rp.hasDigit('abc123'));
+console.log('hasDigit("no-digits") =>', rp.hasDigit('no-digits'));
 
 // 2) firstWord
 // console.log('firstWord("Hello world!") =>', rp.firstWord('Hello world!'));
