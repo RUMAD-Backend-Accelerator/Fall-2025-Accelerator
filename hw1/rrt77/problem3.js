@@ -19,6 +19,10 @@
  * @returns {{departments:number,courses:number,sections:number}}
  */
 function getDepartmentCourseSummary(subjects) {
+  for (let i = 0; i < subjects.length; i++)
+  {
+
+  }
   // TODO: implement this function.
   // HINTS:
   //  - `subjects` is an array of department objects.
@@ -36,7 +40,13 @@ function getDepartmentCourseSummary(subjects) {
  * @param {Object|Array|number|null} courseObj
  * @returns {number}
  */
-function countSectionsForCourse(courseObj) {
+function countSectionsForCourse(courseObj) 
+{
+  if (Array.isArray(courseObj))
+  {
+
+  }
+  if (Array.isNumber(courseObj))
   // TODO: implement this function.
   // HINTS:
   //  - If `courseObj.sections` is an array, return its `length`.
