@@ -33,9 +33,7 @@ function getTopTenCoursesByCredits(subjects) {
   //  - Sections may be an array or a number; normalize to a count.
   //  - Build an array of { course, credits, sections } and sort with
   //    `sortCoursesByCredits(courses)` before returning the top 10.
- let con = [];
- console.log(subjects);
-  throw new Error('Not implemented');
+ console.log("yo")
 }
 
 /**
