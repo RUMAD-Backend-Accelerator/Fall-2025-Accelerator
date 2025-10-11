@@ -17,6 +17,8 @@
  * function.
  */
 
+const { loadSubjects } = require("./loadSubjects");
+
 /**
  * Solve Problem 1
  * @param {Array|Object} subjects - parsed subjects data from subjects.json
@@ -31,15 +33,8 @@ function getTopTenCoursesByCredits(subjects) {
   //  - Sections may be an array or a number; normalize to a count.
   //  - Build an array of { course, credits, sections } and sort with
   //    `sortCoursesByCredits(courses)` before returning the top 10.
-
  let con = [];
-  for(let i = 0; i<subjects.length;i++){
-     let b = subjects[0].courses;
-     console.log("h");
-     for(let j =0; j<b.length;j++){
-
-     }
-  }
+ console.log(subjects);
   throw new Error('Not implemented');
 }
 
