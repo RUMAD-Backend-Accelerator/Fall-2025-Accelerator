@@ -37,9 +37,46 @@ function getTopTenCoursesByCredits(subjects) {
   //    `sortCoursesByCredits(courses)` before returning the top 10.
  console.log("yo");
  let num;
- let thi = 'course_161';
- console.log(subjects[0]['course_*:']);
+ let track;
+ let h =1;
+
+//let courses = []
+//courses.push(course);
+//courses[0].credits = subjects[0]['course_161'].credits;
+//console.log(courses);
+let index =0;
+console.log(subjects[1]);
+let courses = [];
+for(let i =0;i<subjects.length;i++){
+  let j =1;
+  while(j<=800){
+   let str = "00";
+   if(j<10){
+   str = "00" + j;
+   }else if (j>=10 && j<=99){
+    str = "0"+j;
+   }else{
+     str = ""+ j;
+   }
+   if(subjects[i]['course_'+str ]!= undefined){
+     let course={
+      title: "",
+      credits: 0,
+      sections: 0
+     }
+     courses.push(course);
+     courses[index].title = subjects[i]['course_'+str ].title;
+     courses[index].sections = subjects[i]['course_'+str ].sections.length;
+     courses[index].credits = subjects[i]['course_'+str ].credits;
+     index +=1;
+  }
+    j++;
+ }
+ }
+ courses = sortCoursesByCredits(courses);
+ console.log(courses);
 }
+
 
 /**
  * Helper: sorts courses by credits, and then by sections
