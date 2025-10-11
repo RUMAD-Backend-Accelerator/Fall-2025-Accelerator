@@ -24,6 +24,8 @@ const { loadSubjects } = require("./loadSubjects");
  * @param {Array|Object} subjects - parsed subjects data from subjects.json
  * @returns {Array<Object>} array of objects: { course: string, credits: number|null, sections: number }
  */
+subjects = loadSubjects();
+getTopTenCoursesByCredits(subjects)
 function getTopTenCoursesByCredits(subjects) {
   // TODO: implement this function.
   // HINTS:
@@ -33,7 +35,10 @@ function getTopTenCoursesByCredits(subjects) {
   //  - Sections may be an array or a number; normalize to a count.
   //  - Build an array of { course, credits, sections } and sort with
   //    `sortCoursesByCredits(courses)` before returning the top 10.
- console.log("yo")
+ console.log("yo");
+ let num;
+ let thi = 'course_161';
+ console.log(subjects[0]['course_*:']);
 }
 
 /**
@@ -47,7 +52,7 @@ function sortCoursesByCredits(courses) {
     // ... always check for null values to be safe
     const a = c1.credits == null ? Number.NEGATIVE_INFINITY : c1.credits;
     const b = c2.credits == null ? Number.NEGATIVE_INFINITY : c2.credits;
-    if (a != b) return b - a; // credits descending
+    if (a != b) return b - a;  //credits descending
     // ... below this point, credits are equal, so sort by sections
     return (c2.sections || 0) - (c1.sections || 0); // sections descending
   });
