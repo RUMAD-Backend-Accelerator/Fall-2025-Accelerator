@@ -1,0 +1,19 @@
+{
+  "name": "fall-2025-accelerator",
+  "version": "1.0.0",
+  "description": "Each mentee will work on their own branch — this keeps your work organized and allows mentors to review your code privately. Below is a guide on how to make your own private branch and upload your submissions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RUMAD-Backend-Accelerator/Fall-2025-Accelerator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RUMAD-Backend-Accelerator/Fall-2025-Accelerator/issues"
+  },
+  "homepage": "https://github.com/RUMAD-Backend-Accelerator/Fall-2025-Accelerator#readme"
+}

@@ -52,3 +52,4 @@ function sortCoursesByCredits(courses) {
 }
 
 module.exports = { solve: getTopTenCoursesByCredits };
+cjjb
