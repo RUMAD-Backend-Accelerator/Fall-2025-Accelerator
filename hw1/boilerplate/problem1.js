@@ -35,7 +35,7 @@ function getTopTenCoursesByCredits(subjects) {
  let con = [];
   for(let i = 0; i<subjects.length;i++){
      let b = subjects[0].courses;
-     console.log(b);
+     console.log("h");
      for(let j =0; j<b.length;j++){
 
      }
