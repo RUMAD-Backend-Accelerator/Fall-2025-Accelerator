@@ -66,6 +66,7 @@ for(let i =0;i<subjects.length;i++){
  courses = sortCoursesByCredits(courses);
  courses = courses.splice(0,11);
  return courses;
+ throw new Error('Not implemented');
 }
 
 

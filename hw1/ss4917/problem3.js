@@ -45,6 +45,7 @@ function getDepartmentCourseSummary(subjects) {
       sections:cs
     }
      return dept;
+     throw new Error('Not implemented');
 }
 /**
  * 
