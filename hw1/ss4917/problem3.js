@@ -18,6 +18,9 @@
  * @param {Array|Object} subjects - parsed subjects data
  * @returns {{departments:number,courses:number,sections:number}}
  */
+const { loadSubjects } = require("./loadSubjects");
+subjects = loadSubjects();
+getDepartmentCourseSummary(subjects);
 function getDepartmentCourseSummary(subjects) {
   // TODO: implement this function.
   // HINTS:
@@ -26,10 +29,25 @@ function getDepartmentCourseSummary(subjects) {
   //  - Count courses by finding keys named like `course_*` within each dept.
   //  - Use `countSectionsForCourse(courseObj)` to normalize section counts.
   //  - Return an object: { departments, courses, sections }.
-  throw new Error('Not implemented');
+  let count =0;
+  let cs =0;
+  for(let i =0;i<subjects.length;i++){
+    Object.keys(subjects[i]).forEach(trait =>{
+      if(trait.startsWith('course_')){
+        count +=1;
+        cs += countSectionsForCourse(subjects[i][trait]);
+      }
+    })
+  }
+    let dept = {
+      department: subjects.length,
+      courses:count,
+      sections:cs
+    }
+     return dept;
 }
-
 /**
+ * 
  * Helper: counts sections for a course object
  * Students: implement and call this helper if desired.
  *
@@ -42,6 +60,12 @@ function countSectionsForCourse(courseObj) {
   //  - If `courseObj.sections` is an array, return its `length`.
   //  - If `courseObj.sections` is a number, return that number.
   //  - Otherwise return 0.
+   if(typeof (courseObj.sections)== typeof []){
+    return (courseObj.sections.length);
+   }else if (typeof (courseObj.sections)== typeof 6){
+    return courseObj.sections;
+   }
+   return 0;
   throw new Error('Not implemented');
 }
 

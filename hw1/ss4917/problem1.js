@@ -35,17 +35,7 @@ function getTopTenCoursesByCredits(subjects) {
   //  - Sections may be an array or a number; normalize to a count.
   //  - Build an array of { course, credits, sections } and sort with
   //    `sortCoursesByCredits(courses)` before returning the top 10.
- console.log("yo");
- let num;
- let track;
- let h =1;
-
-//let courses = []
-//courses.push(course);
-//courses[0].credits = subjects[0]['course_161'].credits;
-//console.log(courses);
 let index =0;
-console.log(subjects[1]);
 let courses = [];
 for(let i =0;i<subjects.length;i++){
   let j =1;
@@ -75,7 +65,7 @@ for(let i =0;i<subjects.length;i++){
  }
  courses = sortCoursesByCredits(courses);
  courses = courses.splice(0,11);
- console.log(courses);
+ return courses;
 }
 
 
