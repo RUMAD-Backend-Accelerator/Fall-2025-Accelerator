@@ -42,6 +42,11 @@ function countSectionsForCourse(courseObj) {
   //  - If `courseObj.sections` is an array, return its `length`.
   //  - If `courseObj.sections` is a number, return that number.
   //  - Otherwise return 0.
+  if(Array.isArray(courseObj.sections))
+  {
+    return courseObj.sections.length;
+  }
+  return courseObj.sections;
   throw new Error('Not implemented');
 }
 
