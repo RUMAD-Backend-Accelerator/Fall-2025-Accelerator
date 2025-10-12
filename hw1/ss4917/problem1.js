@@ -35,40 +35,27 @@ function getTopTenCoursesByCredits(subjects) {
   //  - Sections may be an array or a number; normalize to a count.
   //  - Build an array of { course, credits, sections } and sort with
   //    `sortCoursesByCredits(courses)` before returning the top 10.
-let index =0;
 let courses = [];
 for(let i =0;i<subjects.length;i++){
-  let j =1;
-  while(j<=800){
-   let str = "00";
-   if(j<10){
-   str = "00" + j;
-   }else if (j>=10 && j<=99){
-    str = "0"+j;
-   }else{
-     str = ""+ j;
-   }
-   if(subjects[i]['course_'+str ]!= undefined){
-     let course={
-      title: "",
-      credits: 0,
-      sections: 0
-     }
-     courses.push(course);
-     courses[index].title = subjects[i]['course_'+str ].title;
-     courses[index].sections = subjects[i]['course_'+str ].sections.length;
-     courses[index].credits = subjects[i]['course_'+str ].credits;
-     index +=1;
-  }
-    j++;
- }
- }
+  Object.keys(subjects[i]).forEach(trait =>{
+    if(trait.startsWith('course_')){
+      let course={
+        title : "",
+        sections: 0,
+        credits: 0,
+       }
+       courses.push(course);
+       courses[courses.length-1].title = subjects[i][trait ].title;
+       courses[courses.length-1].sections = subjects[i][trait ].sections.length;
+       courses[courses.length-1].credits = subjects[i][trait ].credits;
+    }
+  })
+}
  courses = sortCoursesByCredits(courses);
  courses = courses.splice(0,11);
  return courses;
  throw new Error('Not implemented');
 }
-
 
 /**
  * Helper: sorts courses by credits, and then by sections

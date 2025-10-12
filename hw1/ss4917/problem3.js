@@ -44,7 +44,7 @@ function getDepartmentCourseSummary(subjects) {
       courses:count,
       sections:cs
     }
-     return dept;
+    return dept;
      throw new Error('Not implemented');
 }
 /**
