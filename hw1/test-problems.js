@@ -40,7 +40,7 @@ async function run() {
   const toRun = arg === 'all' ? ['p1','p2','p3'] : [arg];
 
   // load subjects helper once (if available)
-  const loaderMod = tryRequire('./boilerplate/loadSubjects') || tryRequire('./solutions/loadSubjects');
+  const loaderMod = tryRequire('./km1795/loadSubjects') || tryRequire('./solutions/loadSubjects');
   let subjects = null;
   if (loaderMod) {
     // module may export { loadSubjects } or be the function directly
@@ -70,7 +70,7 @@ async function run() {
 
     // try to require the student's module preferring the configured folder
     const preferredPath = './' + PREFERRED_FOLDER + '/' + problem.replace('p', 'problem');
-    const otherPath = preferredPath.startsWith('./boilerplate') ? './solutions/' + problem.replace('p', 'problem') : './boilerplate/' + problem.replace('p', 'problem');
+    const otherPath = preferredPath.startsWith('./km1795') ? './solutions/' + problem.replace('p', 'problem') : './km1795/' + problem.replace('p', 'problem');
     const mod = tryRequire(preferredPath) || tryRequire(otherPath);
 
     // Helper to pick an implementation function from a module object

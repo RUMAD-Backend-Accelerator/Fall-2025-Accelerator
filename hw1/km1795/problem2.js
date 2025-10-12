@@ -28,7 +28,22 @@ function getPrerequisites(subjects, courseIdentifier) {
   //  - Search each department's `course_*` entries for a match.
   //  - When found, use `extractPrereqsFromCourse(courseObj)` to obtain prereqs.
   //  - Return an array of strings (empty array if none found).
-  throw new Error('Not implemented');
+  const normalizedIndentifier = courseIdentifier.toLowerCase().trim();
+  for (const dept of subjects) {
+    for (const course of Object.keys(dept)) {
+      if (course.startsWith('course_')) {
+        const courseObj = dept[course];
+
+        if (courseObj.title && courseObj.title.toLowerCase().trim() === normalizedIndentifier) {
+          return extractPrereqsFromCourse(courseObj);
+        }
+        if (courseObj.code && courseObj.code.toLowerCase().trim() === normalizedIndentifier) {
+          return extractPrereqsFromCourse(courseObj);
+        }
+      }
+    }
+  }
+  return [];
 }
 
 /**
