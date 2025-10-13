@@ -39,7 +39,7 @@ for (let i = 0; i < subjects.length; i++) {
   }
 }
 
-console.log({ departments, courses, sections });
+return { departments, courses, sections }
   // TODO: implement this function.
   // HINTS:
   //  - `subjects` is an array of department objects.
@@ -47,7 +47,7 @@ console.log({ departments, courses, sections });
   //  - Count courses by finding keys named like `course_*` within each dept.
   //  - Use `countSectionsForCourse(courseObj)` to normalize section counts.
   //  - Return an object: { departments, courses, sections }.
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
 }
 
 /**
@@ -64,7 +64,7 @@ function countSectionsForCourse(courseObj) {
 
   if (Array.isArray(courseObj.sections)) {
     return courseObj.sections.length
-  } else if (typeof courseObj === "number") {
+  } else if (typeof courseObj.sections === "number") {
     return courseObj.sections
   }
 
@@ -73,7 +73,7 @@ function countSectionsForCourse(courseObj) {
   //  - If `courseObj.sections` is an array, return its `length`.
   //  - If `courseObj.sections` is a number, return that number.
   //  - Otherwise return 0.
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
 }
 
 module.exports = { solve: getDepartmentCourseSummary };
