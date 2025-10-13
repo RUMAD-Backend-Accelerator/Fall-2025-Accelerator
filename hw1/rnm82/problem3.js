@@ -26,6 +26,20 @@ function getDepartmentCourseSummary(subjects) {
   //  - Count courses by finding keys named like `course_*` within each dept.
   //  - Use `countSectionsForCourse(courseObj)` to normalize section counts.
   //  - Return an object: { departments, courses, sections }.
+  let departments = subjects.length
+  let courses = 0
+  let sections = 0
+
+  for(let i = 0; i < departments; i++){
+    let dept = subjects[i]
+  
+  for (let course in dept) {
+    if(course.startsWith("course_"))
+    courses++
+    sections += countSectionsForCourse(course)
+  }
+}
+return { departments, courses, sections };
   throw new Error('Not implemented');
 }
 
@@ -42,6 +56,11 @@ function countSectionsForCourse(courseObj) {
   //  - If `courseObj.sections` is an array, return its `length`.
   //  - If `courseObj.sections` is a number, return that number.
   //  - Otherwise return 0.
+  const s = courseObj.sections;
+
+  if (Array.isArray(s)) return s.length;
+  if (typeof s === 'number') return s;
+  return 0;
   throw new Error('Not implemented');
 }
 

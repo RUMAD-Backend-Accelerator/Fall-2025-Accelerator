@@ -40,7 +40,7 @@ async function run() {
   const toRun = arg === 'all' ? ['p1','p2','p3'] : [arg];
 
   // load subjects helper once (if available)
-  const loaderMod = tryRequire('./boilerplate/loadSubjects') || tryRequire('./solutions/loadSubjects');
+  const loaderMod = tryRequire('./rnm82/loadSubjects') || tryRequire('./solutions/loadSubjects');
   let subjects = null;
   if (loaderMod) {
     // module may export { loadSubjects } or be the function directly
