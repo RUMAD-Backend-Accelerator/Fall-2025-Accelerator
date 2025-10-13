@@ -34,7 +34,17 @@ const taskCases = require('../data/tasks-cases.json'); // imports taskCases arra
 /* Write your function here */
 const countTaskPriority = (req, res) => {
   // TODO: implement this function
-  throw new Error('Not implemented');
+  const taskCase = taskCases[req.caseIndex];
+
+  if (!taskCase || !taskCase.tasks) return {};
+
+  const incompleteTasks = taskCase.tasks.filter(task => !task.completed);
+
+  const counts = {};
+  incompleteTasks.forEach(task => {
+    counts[task.priority] = (counts[task.priority] || 0) + 1;
+  });
+  return counts;
 };
 
 // Wrapper function for shared test runner compatibility

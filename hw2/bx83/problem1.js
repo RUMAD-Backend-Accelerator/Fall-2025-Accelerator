@@ -28,7 +28,11 @@ const taskCases = require('../data/tasks-cases.json'); // imports taskCases arra
 /* Write your function here */
 const getAllTasks = (req, res) => {
   // TODO: implement this function
-  throw new Error('Not implemented');
+
+  const correctCase = taskCases.find((taskCase) => {
+    return taskCase.case_id == req.caseId
+  })
+  return {data: correctCase};
 };
 
 // Wrapper function for shared test runner compatibility
