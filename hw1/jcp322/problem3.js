@@ -19,6 +19,27 @@
  * @returns {{departments:number,courses:number,sections:number}}
  */
 function getDepartmentCourseSummary(subjects) {
+  let departments = 0
+  let courses = 0
+  let sections = 0
+
+//loop through each department
+for (let i = 0; i < subjects.length; i++) {
+  const dept = subjects[i]
+  departments++
+
+  //loop through each key in department object
+  for (let key in dept) {
+    if (key.startsWith("course_")) {
+      courses++
+
+      const courseObj = dept[key]
+      sections += countSectionsForCourse(courseObj)
+    }
+  }
+}
+
+console.log({ departments, courses, sections });
   // TODO: implement this function.
   // HINTS:
   //  - `subjects` is an array of department objects.
@@ -37,6 +58,16 @@ function getDepartmentCourseSummary(subjects) {
  * @returns {number}
  */
 function countSectionsForCourse(courseObj) {
+  if (!courseObj) {
+    return 0
+  }
+
+  if (Array.isArray(courseObj.sections)) {
+    return courseObj.sections.length
+  } else if (typeof courseObj === "number") {
+    return courseObj.sections
+  }
+
   // TODO: implement this function.
   // HINTS:
   //  - If `courseObj.sections` is an array, return its `length`.
