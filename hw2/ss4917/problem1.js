@@ -24,14 +24,20 @@
  */
 
 const taskCases = require('../data/tasks-cases.json'); // imports taskCases array
-
 /* Write your function here */
 const getAllTasks = (req, res) => {
   // TODO: implement this function
-  throw new Error('Not implemented');
+    let a = req.caseId;
+    for(let i =0; i<taskCases.length;i++){
+      if(taskCases[i]["case_id"]== a){
+        console.log( {data:{"case_id": a, "tasks": taskCases[i]["tasks"]}})
+         return {data:{"case_id": a, "tasks": taskCases[i]["tasks"]}};
+      }
+    }
+    return {data:{"case_id": 0, "tasks": null}};
+     throw new Error('Not implemented');
 };
 
 // Wrapper function for shared test runner compatibility
 const solve = (taskCases, input) => getAllTasks(input, null);
-
 module.exports = { solve };
