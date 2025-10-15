@@ -4,7 +4,7 @@
   "description": "Each mentee will work on their own branch — this keeps your work organized and allows mentors to review your code privately. Below is a guide on how to make your own private branch and upload your submissions.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check-hw": "node test-problems.js"
   },
   "repository": {
     "type": "git",
