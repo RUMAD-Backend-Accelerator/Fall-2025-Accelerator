@@ -51,7 +51,10 @@ node test-problems.js hw1 p2
 **Requirements:**
 - Node.js installed (version 18 or higher)
 <<<<<<< HEAD
+<<<<<<< HEAD
 - Run `npm install` first (one-time setup)
+=======
+>>>>>>> 1dddaec (Add test runner and update README with testing instructions)
 =======
 >>>>>>> 1dddaec (Add test runner and update README with testing instructions)
 - Run commands from the repository root directory
