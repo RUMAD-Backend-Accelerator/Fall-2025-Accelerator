@@ -27,7 +27,34 @@ git checkout -b Hiya/homework
 git add .
 git commit -m "Finished problem 1"
 ```
-## 4. Push your branch to GitHub
+
+## 4. Test your homework locally (optional)
+
+You can test your homework solutions locally before submitting:
+
+```bash
+# Using npm script (recommended)
+npm run check-hw -- hw1
+
+# Test a specific problem
+npm run check-hw -- hw1 p2
+
+# Test with custom folder
+npm run check-hw -- hw1 my-solutions
+
+# Or use node directly
+node test-problems.js hw1
+node test-problems.js hw1 p2
+```
+
+**Requirements:**
+- Node.js installed (version 18 or higher)
+- Run `npm install` first (one-time setup)
+- Run commands from the repository root directory
+
+The test runner will show you which test cases pass or fail, helping you verify your solutions before submission.
+
+## 5. Push your branch to GitHub
 This publishes your branch so instructors can review it.
 
 * The first time you create your branch and publish it:
