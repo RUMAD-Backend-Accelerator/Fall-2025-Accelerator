@@ -1,56 +1,124 @@
 {
+  "setup": {
+    "dataFiles": {
+      "subjects": "data/subjects.json",
+      "subjectsSmall": "data/subjects_small.json"
+    }
+  },
   "p1": [
     {
       "name": "p1-full-catalog",
-      "input": { "subjectsPath": "../subjects.json" },
-      "notes": "Run on full subjects catalog (smoke).",
-      "expected": null
+      "input": {},
+      "dataKeys": ["subjects"],
+      "notes": "Return top 10 courses sorted by credits (desc) then sections (desc).",
+      "expected": [
+        { "course": "ACTING IN LONDON", "credits": 12, "sections": 1 },
+        { "course": "CLINICAL PRAC 2", "credits": 11, "sections": 1 },
+        { "course": "NSG CARE ADULT/OA", "credits": 6, "sections": 14 },
+        { "course": "NSG CARE CHLDBRG FAM", "credits": 6, "sections": 14 },
+        { "course": "PROF PRAC INTERNSHIP", "credits": 6, "sections": 6 },
+        { "course": "INTERNSHIP SPRT MGT", "credits": 6, "sections": 2 },
+        { "course": "CO-OP EDUCATION", "credits": 6, "sections": 1 },
+        { "course": "AFR STDY SCHOL PROJ", "credits": 6, "sections": 1 },
+        { "course": "CO-OP ARTS & SCIENCE", "credits": 6, "sections": 1 },
+        { "course": "HONORS IN CHINESE", "credits": 6, "sections": 1 }
+      ]
     },
     {
-      "name": "p1-small-sample",
-      "input": { "subjectsPath": "../subjects.json", "limit": 5 },
-      "notes": "Small sample run (limit used by some implementations).",
-      "expected": null
-    },
-    {
-      "name": "p1-edge-empty",
-      "input": { "subjectsPath": "../subjects.json", "filter": "NON-EXISTENT" },
-      "notes": "Edge case: expect empty or handled gracefully by implementation.",
-      "expected": null
+      "name": "p1-small-dataset",
+      "input": {},
+      "dataKeys": ["subjectsSmall"],
+      "notes": "Test with smaller dataset (first 3 departments) to verify sorting logic.",
+      "expected": [
+        { "course": "CO-OP EDUCATION", "credits": 6, "sections": 1 },
+        { "course": "INTRO FINANCIAL ACCT", "credits": 3, "sections": 9 },
+        { "course": "INTRO TO MNGRL ACCTG", "credits": 3, "sections": 5 },
+        { "course": "INTERMED ACCTNG I", "credits": 3, "sections": 3 },
+        { "course": "ADVANCED ACCOUNTING", "credits": 3, "sections": 3 },
+        { "course": "AUDIT ANALYTICS", "credits": 3, "sections": 3 },
+        { "course": "ACCTNG INFORM SYSTS", "credits": 3, "sections": 3 },
+        { "course": "INTERMED ACCTNG II", "credits": 3, "sections": 2 },
+        { "course": "CONCEPTS OF AUDITING", "credits": 3, "sections": 2 },
+        { "course": "INCOME TAX ACCOUNTNG", "credits": 3, "sections": 2 }
+      ]
     }
   ],
   "p2": [
     {
       "name": "p2-intro-acct",
-      "input": { "subjectsPath": "../subjects.json", "courseIdentifier": "INTRO FINANCIAL ACCT" },
-      "notes": "Look up a common course by title/identifier.",
-      "expected": null
+      "input": { "courseIdentifier": "INTRO FINANCIAL ACCT" },
+      "dataKeys": ["subjects"],
+      "notes": "Look up a common course by title with no prerequisites.",
+      "expected": []
     },
     {
       "name": "p2-deep-learning",
-      "input": { "subjectsPath": "../subjects.json", "courseIdentifier": "DEEP LEARNING" },
-      "notes": "Another course title to test matching behavior.",
-      "expected": null
+      "input": { "courseIdentifier": "DEEP LEARNING" },
+      "dataKeys": ["subjects"],
+      "notes": "Look up course with complex prerequisites (contains OR statements).",
+      "expected": [
+        "(01:640:250",
+        "01:198:112",
+        "01:198:206",
+        "01:198:206 ) <em> OR </em> (01:640:250",
+        "01:198:112",
+        "01:640:477",
+        "01:640:477 ) <em> OR </em> (01:640:250",
+        "01:198:112",
+        "01:960:379",
+        "01:960:379 )"
+      ]
     },
     {
       "name": "p2-nonexistent",
-      "input": { "subjectsPath": "../subjects.json", "courseIdentifier": "TOTALLY FAKE COURSE" },
-      "notes": "Nonexistent course should be handled gracefully.",
-      "expected": null
+      "input": { "courseIdentifier": "TOTALLY FAKE COURSE" },
+      "dataKeys": ["subjects"],
+      "notes": "Nonexistent course should return empty array.",
+      "expected": []
+    },
+    {
+      "name": "p2-zero-credit-course",
+      "input": { "courseIdentifier": "PHARM EOF TUTORING" },
+      "dataKeys": ["subjects"],
+      "notes": "Look up a course with 0 credits - should still work.",
+      "expected": []
+    },
+    {
+      "name": "p2-null-credit-course",
+      "input": { "courseIdentifier": "RBHS/DENTISTRY" },
+      "dataKeys": ["subjects"],
+      "notes": "Look up a course with null credits - should still work.",
+      "expected": []
+    },
+    {
+      "name": "p2-empty-string",
+      "input": { "courseIdentifier": "" },
+      "dataKeys": ["subjects"],
+      "notes": "Edge case: Empty string should return empty array.",
+      "expected": []
+    },
+    {
+      "name": "p2-managerial-accounting",
+      "input": { "courseIdentifier": "INTRO TO MNGRL ACCTG" },
+      "dataKeys": ["subjects"],
+      "notes": "Look up business course with simple OR prerequisites.",
+      "expected": ["(33:010:272 )<em> OR </em>(29:010:203 )"]
     }
   ],
   "p3": [
     {
       "name": "p3-full-catalog",
-      "input": { "subjectsPath": "../subjects.json" },
-      "notes": "Run full-catalog analysis (smoke).",
-      "expected": null
+      "input": {},
+      "dataKeys": ["subjects"],
+      "notes": "Count all departments, courses, and sections in the catalog.",
+      "expected": { "departments": 169, "courses": 2819, "sections": 7461 }
     },
     {
-      "name": "p3-sample",
-      "input": { "subjectsPath": "../subjects.json", "sample": true },
-      "notes": "Sample run flag for implementations that accept options.",
-      "expected": null
+      "name": "p3-small-dataset",
+      "input": {},
+      "dataKeys": ["subjectsSmall"],
+      "notes": "Count with smaller dataset (first 3 departments) to verify counting logic.",
+      "expected": { "departments": 3, "courses": 37, "sections": 86 }
     }
   ]
 }
