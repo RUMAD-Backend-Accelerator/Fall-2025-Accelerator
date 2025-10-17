@@ -37,9 +37,28 @@
 const taskCases = require('../data/tasks-cases.json'); // imports taskCases array
 
 /* Write your function here */
-const sortTasksByDueDate = (req, res) => {
-  // TODO: implement this function
-  throw new Error('Not implemented');
+const sortTasksByDueDate = (req, res) => 
+{
+  tasks = taskCases[req.taskCaseIndex]['tasks'];
+  for(i = 0; i < tasks.length; i++)
+  {
+    min = i;
+    let minDate = new Date(tasks[i].due_date);
+    let currDate = minDate;
+    for(j = i; j < tasks.length; j++)
+    {
+      currDate = new Date(tasks[j].due_date);
+      if(currDate < minDate) 
+      {
+        min = j;
+        minDate = currDate;
+      }
+    }
+    let temp = tasks[i];
+    tasks[i] = tasks[min];
+    tasks[min] = temp;
+  }
+  return {data: tasks};
 };
 
 // Wrapper function for shared test runner compatibility
