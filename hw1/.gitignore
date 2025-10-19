@@ -1,3 +1,6 @@
 # ignore node modules if used locally
 node_modules/
 .env
+
+# ignore test runner output files
+*_results.md

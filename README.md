@@ -52,11 +52,15 @@ node test-problems.js hw1 p2
 - Node.js installed (version 18 or higher)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 - Run `npm install` first (one-time setup)
 =======
 >>>>>>> 1dddaec (Add test runner and update README with testing instructions)
 =======
 >>>>>>> 1dddaec (Add test runner and update README with testing instructions)
+=======
+- Run `npm install` first (one-time setup)
+>>>>>>> b3bf489a560a198e9f82643e0d74251aea762e11
 - Run commands from the repository root directory
 
 The test runner will show you which test cases pass or fail, helping you verify your solutions before submission.
