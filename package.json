@@ -1,16 +1,16 @@
 {
-  "name": "fall-2025-accelerator",
+  "name": "rumad-fall-2025-accelerator",
   "version": "1.0.0",
-  "description": "Each mentee will work on their own branch — this keeps your work organized and allows mentors to review your code privately.\r Below is a guide on how to make your own private branch and upload your submissions.",
-  "main": "index.js",
+  "description": "RUMAD Fall 2025 Backend Accelerator public repository accessible to students. Homework and meeting code will be posted.",
+  "main": "hw1/test-problems.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check-hw": "node test-problems.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RUMAD-Backend-Accelerator/Fall-2025-Accelerator.git"
   },
-  "author": "",
+  "author": "Ayush Mishra, Liam Ta, Hiya Mavani",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/RUMAD-Backend-Accelerator/Fall-2025-Accelerator/issues"

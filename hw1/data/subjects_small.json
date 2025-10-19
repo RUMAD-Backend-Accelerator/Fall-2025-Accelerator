@@ -1,0 +1,692 @@
+[
+  {
+    "description": "Exchange",
+    "code": "001",
+    "course_161": {
+      "subjectNotes": null,
+      "subject": "001",
+      "synopsisUrl": null,
+      "offeringUnitCode": "01",
+      "title": "ODASIS PROGRAM",
+      "preReqNotes": null,
+      "sections": [
+        "05388",
+        "05389",
+        "05390",
+        "05391",
+        "05392",
+        "05393",
+        "05394",
+        "05395",
+        "05396"
+      ],
+      "supplementCode": "  ",
+      "credits": 1,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    },
+    "course_300": {
+      "subjectNotes": null,
+      "subject": "001",
+      "synopsisUrl": null,
+      "offeringUnitCode": "01",
+      "title": "RBHS/DENTISTRY",
+      "preReqNotes": null,
+      "sections": [
+        "05397"
+      ],
+      "supplementCode": "  ",
+      "credits": null,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    },
+    "course_301": {
+      "subjectNotes": null,
+      "subject": "001",
+      "synopsisUrl": null,
+      "offeringUnitCode": "01",
+      "title": "RBHS-NJMS",
+      "preReqNotes": null,
+      "sections": [
+        "05398"
+      ],
+      "supplementCode": "  ",
+      "credits": null,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    },
+    "course_400": {
+      "subjectNotes": null,
+      "subject": "001",
+      "synopsisUrl": null,
+      "offeringUnitCode": "01",
+      "title": "RUTGERS/RWJ MED SCH",
+      "preReqNotes": null,
+      "sections": [
+        "05399",
+        "05400"
+      ],
+      "supplementCode": "  ",
+      "credits": null,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "RUTGERS/RWJ MED SC                                                              "
+    },
+    "course_090": {
+      "subjectNotes": null,
+      "subject": "001",
+      "synopsisUrl": null,
+      "offeringUnitCode": "14",
+      "title": "DEANS OFFICE TOURS",
+      "preReqNotes": null,
+      "sections": [
+        "12119",
+        "12120"
+      ],
+      "supplementCode": "  ",
+      "credits": null,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    },
+    "course_091": {
+      "subjectNotes": null,
+      "subject": "001",
+      "synopsisUrl": null,
+      "offeringUnitCode": "14",
+      "title": "ENGINEERING MEETINGS",
+      "preReqNotes": null,
+      "sections": [
+        "12121",
+        "12122",
+        "12123",
+        "12124"
+      ],
+      "supplementCode": "  ",
+      "credits": null,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    },
+    "course_001": {
+      "subjectNotes": null,
+      "subject": "001",
+      "synopsisUrl": null,
+      "offeringUnitCode": "30",
+      "title": "PHARM EOF TUTORING",
+      "preReqNotes": null,
+      "sections": [
+        "16723"
+      ],
+      "supplementCode": "  ",
+      "credits": 0,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "PHARMACY EOF TUTORING                                                           "
+    },
+    "course_302": {
+      "subjectNotes": null,
+      "subject": "001",
+      "synopsisUrl": null,
+      "offeringUnitCode": "77",
+      "title": "RBHS EXCHANGE",
+      "preReqNotes": null,
+      "sections": [
+        "17690"
+      ],
+      "supplementCode": "  ",
+      "credits": null,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "RBHS EXCHANGE                                                                   "
+    }
+  },
+  {
+    "description": "Accounting",
+    "code": "010",
+    "course_272": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "010",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "INTRO FINANCIAL ACCT",
+      "preReqNotes": null,
+      "sections": [
+        "16882",
+        "16883",
+        "16884",
+        "16885",
+        "16886",
+        "16887",
+        "16888",
+        "16889",
+        "16890"
+      ],
+      "supplementCode": "  ",
+      "credits": 3,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "INTRODUCTION TO FINANCIAL ACCOUNTING                                            "
+    },
+    "course_275": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "010",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "INTRO TO MNGRL ACCTG",
+      "preReqNotes": "(33:010:272 )<em> OR </em>(29:010:203 )",
+      "sections": [
+        "16891",
+        "16892",
+        "16893",
+        "16894",
+        "16895"
+      ],
+      "supplementCode": "  ",
+      "credits": 3,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "INTRODUCTION TO MANAGERIAL ACCOUNTING                                           "
+    },
+    "course_325": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "010",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "INTERMED ACCTNG I",
+      "preReqNotes": "(33:010:272 )<em> OR </em>(29:010:203 )",
+      "sections": [
+        "16896",
+        "16897",
+        "16898"
+      ],
+      "supplementCode": "  ",
+      "credits": 3,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    },
+    "course_326": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "010",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "INTERMED ACCTNG II",
+      "preReqNotes": "(33:010:325 )",
+      "sections": [
+        "16899",
+        "16900"
+      ],
+      "supplementCode": "  ",
+      "credits": 3,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    },
+    "course_401": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "010",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "ADVANCED ACCOUNTING",
+      "preReqNotes": "(33:010:326 )",
+      "sections": [
+        "16901",
+        "16902",
+        "16903"
+      ],
+      "supplementCode": "  ",
+      "credits": 3,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    },
+    "course_415": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "010",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "CONCEPTS OF AUDITING",
+      "preReqNotes": "(33:010:325 )",
+      "sections": [
+        "16904",
+        "16905"
+      ],
+      "supplementCode": "  ",
+      "credits": 3,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    },
+    "course_416": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "010",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "AUDIT ANALYTICS",
+      "preReqNotes": "(33:010:415 )",
+      "sections": [
+        "16906",
+        "16907",
+        "16908"
+      ],
+      "supplementCode": "  ",
+      "credits": 3,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "AUDIT ANALYTICS                                                                 "
+    },
+    "course_421": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "010",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "INCOME TAX ACCOUNTNG",
+      "preReqNotes": "(33:010:325 )",
+      "sections": [
+        "16909",
+        "16910"
+      ],
+      "supplementCode": "  ",
+      "credits": 3,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    },
+    "course_422": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "010",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "TPCS INCOME TAXATION",
+      "preReqNotes": "(33:010:421 )",
+      "sections": [
+        "16911"
+      ],
+      "supplementCode": "  ",
+      "credits": 3,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    },
+    "course_451": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "010",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "COST ACCOUNTING",
+      "preReqNotes": "(33:010:275 )<em> OR </em>(29:010:204 )",
+      "sections": [
+        "16912",
+        "16913"
+      ],
+      "supplementCode": "  ",
+      "credits": 3,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    },
+    "course_458": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "010",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "ACCTNG INFORM SYSTS",
+      "preReqNotes": null,
+      "sections": [
+        "16914",
+        "16915",
+        "16916"
+      ],
+      "supplementCode": "  ",
+      "credits": 3,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    },
+    "course_495": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "010",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "HONORS PROJECT ACCTG",
+      "preReqNotes": null,
+      "sections": [
+        "16917"
+      ],
+      "supplementCode": "  ",
+      "credits": 3,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    },
+    "course_496": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "010",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "HONORS PROJECT ACCTG",
+      "preReqNotes": null,
+      "sections": [
+        "16918"
+      ],
+      "supplementCode": "  ",
+      "credits": 3,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    }
+  },
+  {
+    "description": "Administrative Studies",
+    "code": "011",
+    "course_100": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "011",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "INTRO TO BUSINESS",
+      "preReqNotes": null,
+      "sections": [
+        "16919"
+      ],
+      "supplementCode": "  ",
+      "credits": 3,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    },
+    "course_106": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "011",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "STDNT SUCCESS STRAT",
+      "preReqNotes": null,
+      "sections": [
+        "16920",
+        "16921"
+      ],
+      "supplementCode": "  ",
+      "credits": 1,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "STUDENTS SUCCESS STRATEGIES                                                     "
+    },
+    "course_270": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "011",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "BYOC: CONT BUS MONIT",
+      "preReqNotes": null,
+      "sections": [
+        "16612"
+      ],
+      "supplementCode": "  ",
+      "credits": 1,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "BYOC: CONTINOUS BUSINESS MONITORING                                             "
+    },
+    "course_271": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "011",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "BYOC: EMRG TECH BUS",
+      "preReqNotes": null,
+      "sections": [
+        "16614"
+      ],
+      "supplementCode": "  ",
+      "credits": 1,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "BYOC: EMERGING TECHNOLOGIES IN BUSINESS                                         "
+    },
+    "course_272": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "011",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "BYOC: BUS PRCS AUTOM",
+      "preReqNotes": null,
+      "sections": [
+        "16616"
+      ],
+      "supplementCode": "  ",
+      "credits": 1,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "BYOC: BUSINESS PROCESS AUTOMATION                                               "
+    },
+    "course_273": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "011",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "BYOC: CLOUD COMP BLC",
+      "preReqNotes": null,
+      "sections": [
+        "16618"
+      ],
+      "supplementCode": "  ",
+      "credits": 1,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "BYOC: CLOUD COMPUTING BLOCKCHAIN        & CRYPTO                                "
+    },
+    "course_274": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "011",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "BYOC: AI IN ACCT AUD",
+      "preReqNotes": null,
+      "sections": [
+        "16620"
+      ],
+      "supplementCode": "  ",
+      "credits": 1,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "BYOC: AI IN ACCOUNTING & AUDIT                                                  "
+    },
+    "course_275": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "011",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "BYOC: DIY ACCT & AUD",
+      "preReqNotes": null,
+      "sections": [
+        "16622"
+      ],
+      "supplementCode": "  ",
+      "credits": 1,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "BYOC: DESIGN IT YOURSELF IN ACCOUNTING &AUDIT                                   "
+    },
+    "course_280": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "011",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "SPEC TPCS BUS OPS",
+      "preReqNotes": null,
+      "sections": [
+        "16922"
+      ],
+      "supplementCode": "  ",
+      "credits": 1,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "SPECIAL TOPICS IN BUSINESS OPERATIONS                                           "
+    },
+    "course_300": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "011",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "BUSINESS FORUM",
+      "preReqNotes": null,
+      "sections": [
+        "18962",
+        "18963",
+        "16923"
+      ],
+      "supplementCode": "  ",
+      "credits": 2,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    },
+    "course_301": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "011",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "FOUNDTNS CAREER JOUR",
+      "preReqNotes": null,
+      "sections": [
+        "16924",
+        "16925",
+        "16926",
+        "16927",
+        "18090",
+        "18093"
+      ],
+      "supplementCode": "  ",
+      "credits": 1,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "FOUNDATIONS FOR YOUR CAREER JOURNEY                                             "
+    },
+    "course_302": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "011",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "BUILDING YOUR BRAND",
+      "preReqNotes": "(33:011:301 )<em> OR </em>(29:011:301 )",
+      "sections": [
+        "18072",
+        "18237",
+        "16928",
+        "16929"
+      ],
+      "supplementCode": "  ",
+      "credits": 1,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": null
+    },
+    "course_380": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "011",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "CO-OP EDUCATION",
+      "preReqNotes": null,
+      "sections": [
+        "16930"
+      ],
+      "supplementCode": "  ",
+      "credits": 6,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "COOPERATIVE EDUCATION EXPERIENCE                                                "
+    },
+    "course_390": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "011",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "PERSONAL FIN PLANNIN",
+      "preReqNotes": "(33:390:300 )<em> OR </em>(33:390:310 )",
+      "sections": [
+        "18964"
+      ],
+      "supplementCode": "  ",
+      "credits": 3,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "PERSONAL FINANCIAL PLANNING                                                     "
+    },
+    "course_482": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "011",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "SPEC TPC ADM STUDIES",
+      "preReqNotes": null,
+      "sections": [
+        "16931",
+        "16932"
+      ],
+      "supplementCode": "  ",
+      "credits": 3,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "SPECIAL TOPICS IN ADMINISTRATIVE STUDIES                                        "
+    },
+    "course_485": {
+      "subjectNotes": "NO SPECIAL PERMISSION WILL BE GRANTED FOR RUTGERS BUSINESS SCHOOL-UNDERGRADUATE NB COURSES.",
+      "subject": "011",
+      "synopsisUrl": null,
+      "offeringUnitCode": "33",
+      "title": "FLD INTERN IN BUS",
+      "preReqNotes": null,
+      "sections": [
+        "16933"
+      ],
+      "supplementCode": "  ",
+      "credits": 3,
+      "unitNotes": null,
+      "coreCodes": [],
+      "courseNotes": null,
+      "expandedTitle": "FIELD INTERNSHIP IN BUSINESS"
+    }
+  }
+]
