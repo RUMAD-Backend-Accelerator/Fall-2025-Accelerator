@@ -181,8 +181,28 @@ async function run() {
       // try to require the student's module from the test directory
       const problemFile = problem.replace('p', 'problem');
       const modulePath = path.join(testPath, folder, problemFile);
-      const mod = tryRequire(modulePath);
-      
+
+      // Monkey-patch require to mock '../data/tasks-cases.json' if needed
+      const Module = require('module');
+      const originalRequire = Module.prototype.require;
+      Module.prototype.require = function (request) {
+        // Support both Unix and Windows path separators
+        if (request === '../data/tasks-cases.json' || request === '..\\data\\tasks-cases.json') {
+          // Return the loadedData for the key 'taskCases' if available, else throw
+          if (loadedData.taskCases) return loadedData.taskCases;
+          throw new Error('Mocked data file not found');
+        }
+        return originalRequire.apply(this, arguments);
+      };
+
+      let mod;
+      try {
+        mod = tryRequire(modulePath);
+      } finally {
+        // Restore original require after loading
+        Module.prototype.require = originalRequire;
+      }
+
       // Check if module loading failed
       if (mod && mod.error) {
         studentResult.problems[problem] = { status: 'LOAD_ERROR', error: mod.error, passed: 0, total: 0, failed: 0, skipped: 0 };
@@ -193,7 +213,7 @@ async function run() {
         });
         continue;
       }
-      
+
       const impl = pickImpl(mod, problem);
 
       if (!impl) {
@@ -213,7 +233,7 @@ async function run() {
           // Check if required data is available
           const dataKeys = tc.dataKeys || [];
           const missingData = dataKeys.filter(key => !loadedData[key]);
-          
+
           if (missingData.length > 0) {
             counters.skipped += 1;
             continue;
@@ -221,13 +241,13 @@ async function run() {
 
           // Build arguments for the function call
           const args = [];
-          
+
           if (dataKeys.length > 0) {
             args.push(loadedData[dataKeys[0]]);
           }
-          
+
           const opts = tc.input || {};
-          
+
           if (opts.courseIdentifier !== undefined) {
             args.push(opts.courseIdentifier);
           } else if (Object.keys(opts).length > 0 || impl.length >= 2) {
