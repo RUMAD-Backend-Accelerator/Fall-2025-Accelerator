@@ -34,6 +34,41 @@ const taskCases = require('../data/tasks-cases.json'); // imports taskCases arra
 /* Write your function here */
 const countTaskPriority = (req, res) => {
   // TODO: implement this function
+  let High = 0;
+  let Medium = 0;
+  let Low = 0;
+  let arr = null;
+  for(let i = 0; i<taskCases.length; i++)
+  {
+    if(req.caseId===taskCases[i].case_id)
+    {
+      arr = taskCases[i].tasks;
+    }
+  }
+  if(arr===null)
+  {
+    return {};
+  }
+  for(let i = 0; i<arr.length; i++)
+  {
+    if(arr[i].completed===false)
+    {
+      if(arr[i].priority==="High")
+      {
+        High++;
+      }
+      else if(arr[i].priority==="Medium")
+      {
+        Medium++;
+      }
+      else if(arr[i].priority==="Low")
+      {
+        Low++;
+      }
+    }
+  }
+  return {"High": High, "Medium": Medium, "Low": Low};
+  
   throw new Error('Not implemented');
 };
 

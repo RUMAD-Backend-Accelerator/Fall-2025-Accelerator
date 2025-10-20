@@ -39,7 +39,34 @@ const taskCases = require('../data/tasks-cases.json'); // imports taskCases arra
 /* Write your function here */
 const sortTasksByDueDate = (req, res) => {
   // TODO: implement this function
+  let arr = taskCases[req.taskCaseIndex].tasks;
+  for(let i = 0; i<arr.length; i++)
+  {
+    const date = new Date(arr[i].due_date);
+    arr[i].date = date;
+    
+  }
+  for (let i = 0; i < arr.length - 1; i++) {
+    let minIndex = i;
 
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j].date < arr[minIndex].date) {
+        minIndex = j;
+      }
+    }
+
+    if (minIndex !== i) {
+      let temp = arr[i];
+      arr[i] = arr[minIndex];
+      arr[minIndex] = temp;
+    }
+  }
+
+  for(let i = 0; i<arr.length; i++)
+  {
+    delete arr[i].date;
+  }
+  return {data: arr};
   
 
   throw new Error('Not implemented');
