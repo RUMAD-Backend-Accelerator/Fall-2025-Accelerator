@@ -4,7 +4,7 @@
   "description": "RUMAD Fall 2025 Backend Accelerator public repository accessible to students. Homework and meeting code will be posted.",
   "main": "hw1/test-problems.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check-hw": "node test-problems.js"
   },
   "repository": {
     "type": "git",
