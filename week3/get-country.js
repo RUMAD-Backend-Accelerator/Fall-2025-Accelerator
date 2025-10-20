@@ -10,7 +10,9 @@ export async function getCountryByNameAxios(name, { fullText = true } = {}) {
     headers: { Accept: "application/json" },
   };
 
-  const response = await axios.request(request);
+  // WAITS for the Promise to resolve (success/failure)
+  // in this case, the Promise is returned by axios.request()
+  const response = await axios.request(request); 
   const data = response.data;
 
   if (!Array.isArray(data) || data.length === 0) {
@@ -22,14 +24,25 @@ export async function getCountryByNameAxios(name, { fullText = true } = {}) {
 (async () => {
   console.clear();
   try {
-    const japan = await getCountryByNameAxios("Sudan");
+    const country = await getCountryByNameAxios("South Africa");
     console.log({
-      name: japan.name.common,
-      capital: japan.capital?.[0],
-      population: japan.population,
-      currencyCodes: Object.keys(japan.currencies || {}),
+      name: country.name.common,
+      capital: country.capital?.[0],
+      population: country.population,
+      currencyCodes: Object.keys(country.currencies || {}),
     });
   } catch (e) {
     console.error(e.response?.data || e.message);
   }
 })();
+
+function foo() {
+  
+  return 0;
+}
+
+// synchronous function (default kind of function)
+foo() // will run, and when it's running, execution won't move onto the next block
+
+// await is used before async functions, or execution will move onto the next
+// line of code without waiting for the Promise to resolve.
