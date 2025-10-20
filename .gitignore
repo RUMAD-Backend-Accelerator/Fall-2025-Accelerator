@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Node
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Temporary
+*.tmp
+*.bak
+
+# Editor
+.vscode/
+.idea/
+*.swp
