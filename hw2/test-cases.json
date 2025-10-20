@@ -1,0 +1,360 @@
+{
+  "setup": {
+    "dataFiles": {
+      "taskCases": "data/tasks-cases.json"
+    }
+  },
+  "p1": [
+    {
+      "name": "p1-empty-task-list",
+      "input": { "caseId": 1 },
+      "dataKeys": ["taskCases"],
+      "notes": "Return empty task list for case_id 1.",
+      "expected": {
+        "data": {
+          "case_id": 1,
+          "tasks": []
+        }
+      }
+    },
+    {
+      "name": "p1-case-2",
+      "input": { "caseId": 2 },
+      "dataKeys": ["taskCases"],
+      "notes": "Return all tasks for case_id 2 with 4 tasks.",
+      "expected": {
+        "data": {
+          "case_id": 2,
+          "tasks": 
+            [
+              {
+                "id": 1,
+                "title": "Do Backend Accelerator HW",
+                "description": "Finish all exercises and submit before midnight.",
+                "priority": "High",
+                "status": "In Progress",
+                "due_date": "2025-10-12",
+                "created_at": "2025-10-10T14:30:00Z",
+                "completed": false
+              },
+              {
+                "id": 2,
+                "title": "Prepare for Data Structures Midterm",
+                "description": "Review Trees, HashMaps, and Sets",
+                "priority": "High",
+                "status": "Not Started",
+                "due_date": "2025-10-13",
+                "created_at": "2025-10-10T15:00:00Z",
+                "completed": false
+              },
+              {
+                "id": 3,
+                "title": "Update Project ReadMe",
+                "description": "Add model architecture diagram and usage examples to documentation.",
+                "priority": "Medium",
+                "status": "In Progress",
+                "due_date": "2025-10-14",
+                "created_at": "2025-10-10T16:20:00Z",
+                "completed": false
+              },
+              {
+                "id": 4,
+                "title": "Push latest web app updates to GitHub",
+                "description": "Commit new API routes and test coverage reports.",
+                "priority": "Medium",
+                "status": "In Progress",
+                "due_date": "2025-10-13",
+                "created_at": "2025-10-10T17:00:00Z",
+                "completed": false
+              }
+            ]
+        }
+      }
+    },
+    {
+      "name": "p1-case-3",
+      "input": { "caseId": 3 },
+      "dataKeys": ["taskCases"],
+      "notes": "Return all tasks for case_id 3 with 4 tasks including one completed.",
+      "expected": {
+        "data": {
+          "case_id": 3,
+          "tasks": 
+            [
+              {
+                "id": 5,
+                "title": "Study Dynamic Programming problems",
+                "description": "Solve 3 medium LeetCode problems focused on memoization and tabulation.",
+                "priority": "High",
+                "status": "Not Started",
+                "due_date": "2025-10-14",
+                "created_at": "2025-10-10T17:45:00Z",
+                "completed": false
+              },
+              {
+                "id": 6,
+                "title": "Plan course schedule",
+                "description": "Look at Schedule of Classes and research courses",
+                "priority": "Medium",
+                "status": "In Progress",
+                "due_date": "2025-10-16",
+                "created_at": "2025-10-10T18:10:00Z",
+                "completed": false
+              },
+              {
+                "id": 7,
+                "title": "Jog for 30 minutes",
+                "description": "Outdoor jog for fitness and stress relief.",
+                "priority": "Low",
+                "status": "Completed",
+                "due_date": "2025-10-11",
+                "created_at": "2025-10-10T19:00:00Z",
+                "completed": true
+              },
+              {
+                "id": 8,
+                "title": "Organize Notion tasks for the week",
+                "description": "Review calendar and set up new weekly goals.",
+                "priority": "Low",
+                "status": "Not Started",
+                "due_date": "2025-10-13",
+                "created_at": "2025-10-10T19:45:00Z",
+                "completed": false
+              }
+            ]
+        }
+      }
+    },
+    {
+      "name": "p1-case-4",
+      "input": { "caseId": 4 },
+      "dataKeys": ["taskCases"],
+      "notes": "Return all tasks for case_id 4 with 2 tasks.",
+      "expected": {
+        "data": {
+          "case_id": 4,
+          "tasks": 
+            [
+              {
+                "id": 9,
+                "title": "Go to Verizon recruiting event.",
+                "description": "",
+                "priority": "High",
+                "status": "In Progress",
+                "due_date": "2025-10-12",
+                "created_at": "2025-10-10T20:10:00Z",
+                "completed": false
+              },
+              {
+                "id": 10,
+                "title": "Refine LinkedIn Profile",
+                "description": "Update headline and add recent projects.",
+                "priority": "Medium",
+                "status": "Not Started",
+                "due_date": "2025-10-15",
+                "created_at": "2025-10-10T21:00:00Z",
+                "completed": true
+              }
+            ]
+          }
+      }
+    }
+  ],
+
+  "p2": [
+    {
+      "name": "p2-empty-case",
+      "input": { "caseId": 1 },
+      "dataKeys": ["taskCases"],
+      "notes": "Return priority counts with 0 for all priorities (empty task list).",
+      "expected": {
+        "High": 0,
+        "Medium": 0,
+        "Low": 0
+      }
+    },
+    {
+      "name": "p2-case-2",
+      "input": { "caseId": 2 },
+      "dataKeys": ["taskCases"],
+      "notes": "Count incomplete tasks by priority for case_id 2.",
+      "expected": {
+        "High": 2,
+        "Medium": 2,
+        "Low": 0
+      }
+    },
+    {
+      "name": "p2-case-3",
+      "input": { "caseId": 3 },
+      "dataKeys": ["taskCases"],
+      "notes": "Count incomplete tasks by priority for case_id 3 (excludes completed task).",
+      "expected": {
+        "High": 1,
+        "Medium": 1,
+        "Low": 1
+      }
+    },
+    {
+      "name": "p2-case-4",
+      "input": { "caseId": 4 },
+      "dataKeys": ["taskCases"],
+      "notes": "Count incomplete tasks by priority for case_id 4 (excludes completed task).",
+      "expected": {
+        "High": 1,
+        "Medium": 0,
+        "Low": 0
+      }
+    },
+    {
+      "name": "p2-invalid-case",
+      "input": { "caseId": 5 },
+      "dataKeys": ["taskCases"],
+      "notes": "Return empty object for invalid case_id.",
+      "expected": {}
+    }
+  ],
+
+  "p3": [
+    {
+      "name": "p3-empty-task-list",
+      "input": { "taskCaseIndex": 0 },
+      "dataKeys": ["taskCases"],
+      "notes": "Return empty sorted task list for index 0.",
+      "expected": { "data": [] }
+    },
+    {
+      "name": "p3-case-2-sorted",
+      "input": { "taskCaseIndex": 1 },
+      "dataKeys": ["taskCases"],
+      "notes": "Return tasks for index 1 (case_id 2) sorted by due_date ascending.",
+      "expected": {
+        "data":
+        [
+          {
+            "id": 1,
+            "title": "Do Backend Accelerator HW",
+            "description": "Finish all exercises and submit before midnight.",
+            "priority": "High",
+            "status": "In Progress",
+            "due_date": "2025-10-12",
+            "created_at": "2025-10-10T14:30:00Z",
+            "completed": false
+          },
+          {
+            "id": 2,
+            "title": "Prepare for Data Structures Midterm",
+            "description": "Review Trees, HashMaps, and Sets",
+            "priority": "High",
+            "status": "Not Started",
+            "due_date": "2025-10-13",
+            "created_at": "2025-10-10T15:00:00Z",
+            "completed": false
+          },
+          {
+            "id": 4,
+            "title": "Push latest web app updates to GitHub",
+            "description": "Commit new API routes and test coverage reports.",
+            "priority": "Medium",
+            "status": "In Progress",
+            "due_date": "2025-10-13",
+            "created_at": "2025-10-10T17:00:00Z",
+            "completed": false
+          },
+          {
+            "id": 3,
+            "title": "Update Project ReadMe",
+            "description": "Add model architecture diagram and usage examples to documentation.",
+            "priority": "Medium",
+            "status": "In Progress",
+            "due_date": "2025-10-14",
+            "created_at": "2025-10-10T16:20:00Z",
+            "completed": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "p3-case-3-sorted",
+      "input": { "taskCaseIndex": 2 },
+      "dataKeys": ["taskCases"],
+      "notes": "Return tasks for index 2 (case_id 3) sorted by due_date ascending.",
+      "expected": {
+        "data": 
+        [
+          {
+            "id": 7,
+            "title": "Jog for 30 minutes",
+            "description": "Outdoor jog for fitness and stress relief.",
+            "priority": "Low",
+            "status": "Completed",
+            "due_date": "2025-10-11",
+            "created_at": "2025-10-10T19:00:00Z",
+            "completed": true
+          },
+          {
+            "id": 8,
+            "title": "Organize Notion tasks for the week",
+            "description": "Review calendar and set up new weekly goals.",
+            "priority": "Low",
+            "status": "Not Started",
+            "due_date": "2025-10-13",
+            "created_at": "2025-10-10T19:45:00Z",
+            "completed": false
+          },
+          {
+            "id": 5,
+            "title": "Study Dynamic Programming problems",
+            "description": "Solve 3 medium LeetCode problems focused on memoization and tabulation.",
+            "priority": "High",
+            "status": "Not Started",
+            "due_date": "2025-10-14",
+            "created_at": "2025-10-10T17:45:00Z",
+            "completed": false
+          },
+          {
+            "id": 6,
+            "title": "Plan course schedule",
+            "description": "Look at Schedule of Classes and research courses",
+            "priority": "Medium",
+            "status": "In Progress",
+            "due_date": "2025-10-16",
+            "created_at": "2025-10-10T18:10:00Z",
+            "completed": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "p3-case-4-sorted",
+      "input": { "taskCaseIndex": 3 },
+      "dataKeys": ["taskCases"],
+      "notes": "Return tasks for index 3 (case_id 4) sorted by due_date ascending.",
+      "expected": {
+        "data":
+        [
+          {
+            "id": 9,
+            "title": "Go to Verizon recruiting event.",
+            "description": "",
+            "priority": "High",
+            "status": "In Progress",
+            "due_date": "2025-10-12",
+            "created_at": "2025-10-10T20:10:00Z",
+            "completed": false
+          },
+          {
+            "id": 10,
+            "title": "Refine LinkedIn Profile",
+            "description": "Update headline and add recent projects.",
+            "priority": "Medium",
+            "status": "Not Started",
+            "due_date": "2025-10-15",
+            "created_at": "2025-10-10T21:00:00Z",
+            "completed": true
+          }
+        ]
+      }
+    }
+  ]
+}
