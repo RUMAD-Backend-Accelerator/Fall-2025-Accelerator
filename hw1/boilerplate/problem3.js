@@ -35,7 +35,7 @@ function getDepartmentCourseSummary(subjects) {
     for(let key in department){
       if(key.startsWith('course_')){
         courses++;
-        sections += countSectionsForCourse(deptartment[key]);
+        sections += countSectionsForCourse(department[key]);
       }
     }
   }
