@@ -30,7 +30,6 @@ const getAllTasks = (req, res) => {
     let a = req.caseId;
     for(let i =0; i<taskCases.length;i++){
       if(taskCases[i]["case_id"]== a){
-        console.log( {data:{"case_id": a, "tasks": taskCases[i]["tasks"]}})
          return {data:{"case_id": a, "tasks": taskCases[i]["tasks"]}};
       }
     }
