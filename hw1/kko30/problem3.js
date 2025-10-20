@@ -26,7 +26,33 @@ function getDepartmentCourseSummary(subjects) {
   //  - Count courses by finding keys named like `course_*` within each dept.
   //  - Use `countSectionsForCourse(courseObj)` to normalize section counts.
   //  - Return an object: { departments, courses, sections }.
-  throw new Error('Not implemented');
+
+  if (!Array.isArray(subjects) || subjects.length == 0) {
+    return {departments: 0, courses: 0, sections: 0 };
+    // Checks if subjects is empty if it is it'll return 0 for everything.
+  }
+
+  const departments = subjects.length;
+  // See how many departments there are by checking the subjects array
+  let courses = 0;
+  let sections = 0;
+  // Were setting the total here to 0 so we can increment it later everytime we find a new one
+  subjects.forEach((department) => {
+    const courseKeys = Object.keys(department).filter((key) =>
+      key.startsWith("course_")
+  );
+  //Find out every single key that starts with course_ so then we could add how many
+  //courses a department has
+  courses += coursekeys.length;
+  //now we'll add the total sections for each course
+  coursekeys.forEach((key) => {
+    const courseObj = department[key];
+    sections += countSectionsForCourse(courseObj);
+  });
+});
+
+//return all the totals for an object
+return {departments, courses, sections };
 }
 
 /**
@@ -42,7 +68,18 @@ function countSectionsForCourse(courseObj) {
   //  - If `courseObj.sections` is an array, return its `length`.
   //  - If `courseObj.sections` is a number, return that number.
   //  - Otherwise return 0.
-  throw new Error('Not implemented');
+  if (!courseObj) return 0;
+  // if theres none 0 is returned
+  if (Array.isArray(courseObj.sections)){
+    return courseObj.sections.length;
+  }
+  // If its an array then how many items are in it is how many sections there are
+  // And below if its just a number what number is it?
+  if (typeof courseObj.sections == "number") {
+    return courseObj.sections;
+  }
+  // if sections isn't properly formatted or not there return 0.
+  return 0
 }
 
-module.exports = { solve: getDepartmentCourseSummary };
+module.exports = { solve: getDepartmentCourseSummary};
