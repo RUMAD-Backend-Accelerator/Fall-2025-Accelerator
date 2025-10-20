@@ -28,7 +28,7 @@ const taskCases = require('../data/tasks-cases.json'); // imports taskCases arra
 /* Write your function here */
 const getAllTasks = (req, res) => {
   // TODO: implement this function
-    const correctTaskCase = taskCases.find(tc => tc.case_id === req.caseId);
+    const correctTaskCase = taskCases.find(t => t.case_id === req.caseId);
     return { data: correctTaskCase };
   throw new Error('Not implemented');
 };

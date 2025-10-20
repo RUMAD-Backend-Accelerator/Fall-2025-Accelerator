@@ -39,10 +39,10 @@ const countTaskPriority = (req, res) => {
   if (!taskCase) return {};
 
   // get tasks for this case
-  const tasks = taskCase.tasks || [];
+  const tasks = taskCase.tasks;
 
   // filter incomplete tasks
-  const incomplete = tasks.filter(task => !task.completed);
+  const incomplete = tasks.filter(t => !t.completed);
 
   // initialize counts
   const counts = { High: 0, Medium: 0, Low: 0 };
