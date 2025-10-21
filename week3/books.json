@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "genre": "Classic Fiction",
+    "year": 1925,
+    "rating": 4.2,
+    "description": "A story of wealth, love, and the elusive American Dream, set in the roaring 1920s.",
+    "comments": ["A timeless classic!", "Loved the symbolism and themes."]
+  },
+  {
+    "id": 2,
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "genre": "Romance",
+    "year": 1813,
+    "rating": 4.5,
+    "description": "Elizabeth Bennet navigates issues of manners, morality, and marriage in 19th century England.",
+    "comments": ["My favorite book ever.", "Elizabeth and Darcy forever 💕"]
+  },
+  {
+    "id": 3,
+    "title": "1984",
+    "author": "George Orwell",
+    "genre": "Dystopian",
+    "year": 1949,
+    "rating": 4.4,
+    "description": "A chilling portrayal of a totalitarian regime and the dangers of absolute political control.",
+    "comments": ["Still relevant today.", "Very thought-provoking."]
+  },
+  {
+    "id": 4,
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "genre": "Historical Fiction",
+    "year": 1960,
+    "rating": 4.3,
+    "description": "A young girl comes of age in the racially charged Deep South, guided by her father Atticus Finch.",
+    "comments": ["Heartbreaking and inspiring.", "Scout is such a great narrator."]
+  },
+  {
+    "id": 5,
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "genre": "Fantasy",
+    "year": 1937,
+    "rating": 4.7,
+    "description": "Bilbo Baggins embarks on an unexpected adventure with a band of dwarves to reclaim their homeland.",
+    "comments": ["Wholesome adventure!", "Great for all ages."]
+  },
+  {
+    "id": 6,
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "genre": "Coming-of-Age",
+    "year": 1951,
+    "rating": 3.9,
+    "description": "Holden Caulfield recounts his teenage experiences with alienation and loss in 1950s New York.",
+    "comments": ["A bit moody but relatable.", "Classic teen angst story."]
+  },
+  {
+    "id": 7,
+    "title": "The Alchemist",
+    "author": "Paulo Coelho",
+    "genre": "Philosophical Fiction",
+    "year": 1988,
+    "rating": 4.1,
+    "description": "A young shepherd named Santiago embarks on a journey to fulfill his personal legend.",
+    "comments": ["Inspiring read!", "Simple yet profound."]
+  },
+  {
+    "id": 8,
+    "title": "Harry Potter and the Sorcerer's Stone",
+    "author": "J.K. Rowling",
+    "genre": "Fantasy",
+    "year": 1997,
+    "rating": 4.8,
+    "description": "A young boy discovers he’s a wizard and begins his adventures at Hogwarts School of Witchcraft and Wizardry.",
+    "comments": ["Magical!", "Childhood nostalgia."]
+  },
+  {
+    "id": 9,
+    "title": "The Fault in Our Stars",
+    "author": "John Green",
+    "genre": "Young Adult",
+    "year": 2012,
+    "rating": 4.3,
+    "description": "Two teenagers with cancer fall in love and search for meaning together.",
+    "comments": ["Made me cry.", "So emotional!"]
+  },
+  {
+    "id": 10,
+    "title": "Sapiens: A Brief History of Humankind",
+    "author": "Yuval Noah Harari",
+    "genre": "Non-Fiction",
+    "year": 2011,
+    "rating": 4.6,
+    "description": "A sweeping history of human evolution, culture, and progress from ancient times to the modern age.",
+    "comments": ["Mind-expanding.", "Makes you rethink everything."]
+  }
+]
