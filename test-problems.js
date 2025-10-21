@@ -497,10 +497,18 @@ async function run() {
   
   console.log('\nRunner finished.');
   
+  // Build return object for programmatic access
+  const resultsObject = {};
+  for (const result of allResults) {
+    resultsObject[result.name] = result.problems;
+  }
+  
   if (logStream) {
     logStream.end();
     console.log(`\nLog file created: ${logPath}`);
   }
+  
+  return resultsObject;
 }
 
 if (require.main === module) run();
