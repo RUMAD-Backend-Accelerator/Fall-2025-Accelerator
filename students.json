@@ -6,7 +6,17 @@
       "rutgers_email": "tb901@scarletmail.rutgers.edu",
       "discord_username": ".fishywish",
       "github_username": "tanish-banota",
-      "repo_branch": "Tanish/homework"
+      "repo_branch_metadata": {
+        "Tanish/homework": {
+          "discovered_at": "2025-10-21T14:57:42.329Z",
+          "author": "tanish-banota",
+          "match_strategy": "github_username",
+          "commit_sha": "509ab32fa327a424baef77e2b54b2c796717b156"
+        }
+      },
+      "repo_branches": [
+        "Tanish/homework"
+      ]
     },
     {
       "name": "Krish Maske",
@@ -14,7 +24,17 @@
       "rutgers_email": "km1795@scarletmail.rutgers.edu",
       "discord_username": "oshoduck",
       "github_username": "KrishMaske",
-      "repo_branch": "Krish/Homework"
+      "repo_branch_metadata": {
+        "Krish/Homework": {
+          "discovered_at": "2025-10-21T14:57:42.818Z",
+          "author": "KrishMaske",
+          "match_strategy": "github_username",
+          "commit_sha": "992e5af95598b88530698d4f770f8f928c59217a"
+        }
+      },
+      "repo_branches": [
+        "Krish/Homework"
+      ]
     },
     {
       "name": "Sai Suhas Chekka",
@@ -22,7 +42,17 @@
       "rutgers_email": "sai.s.chekka@rutgers.edu",
       "discord_username": "sai_scxka",
       "github_username": "ssc-coder",
-      "repo_branch": "Sai/homework"
+      "repo_branch_metadata": {
+        "Sai/homework": {
+          "discovered_at": "2025-10-21T14:57:43.238Z",
+          "author": "ssc-coder",
+          "match_strategy": "github_username",
+          "commit_sha": "0298e385dfcedfcf0088c9635f0da98928e1445b"
+        }
+      },
+      "repo_branches": [
+        "Sai/homework"
+      ]
     },
     {
       "name": "Samhith Manoj",
@@ -30,7 +60,17 @@
       "rutgers_email": "sm3191@scarletmail.rutgers.edu",
       "discord_username": "@samshri07",
       "github_username": "SamhithManoj",
-      "repo_branch": "Samhith/homework"
+      "repo_branch_metadata": {
+        "Samhith/homework": {
+          "discovered_at": "2025-10-21T14:57:43.656Z",
+          "author": "Samhith",
+          "match_strategy": "first_name",
+          "commit_sha": "49c2f34ff0a7f0d0e37c4d193c03d065921f588a"
+        }
+      },
+      "repo_branches": [
+        "Samhith/homework"
+      ]
     },
     {
       "name": "Kevon Owusu",
@@ -38,7 +78,23 @@
       "rutgers_email": "kko30@scarletmail.rutgers.edu",
       "discord_username": "kevon0867",
       "github_username": "Kevon-O",
-      "repo_branch": "Kevon/homework"
+      "repo_branch_metadata": {
+        "Kevon/homework": {
+          "discovered_at": "2025-10-21T14:57:44.089Z",
+          "author": "Kevon-O",
+          "match_strategy": "github_username",
+          "commit_sha": "887085b70fa157f0571b22c1207951f51e1ec027"
+        },
+        "kko30/homework": {
+          "discovered_at": "2025-10-21T14:57:44.089Z",
+          "author": "Kevon-O",
+          "match_strategy": "github_username",
+          "commit_sha": "88ef25850da58fda3f3ce0a8b76e9ba430059523"
+        }
+      },
+      "repo_branches": [
+        "kko30/homework"
+      ]
     },
     {
       "name": "Shreyas Bhatkande",
@@ -46,7 +102,17 @@
       "rutgers_email": "srb320@scarletmail.rutgers.edu",
       "discord_username": "wowterra",
       "github_username": "sbhat300",
-      "repo_branch": "Shreyas/homework"
+      "repo_branch_metadata": {
+        "Shreyas/homework": {
+          "discovered_at": "2025-10-21T14:57:44.529Z",
+          "author": "sbhat300",
+          "match_strategy": "github_username",
+          "commit_sha": "366879235278befa2dec6d42e91233d13ec77214"
+        }
+      },
+      "repo_branches": [
+        "Shreyas/homework"
+      ]
     },
     {
       "name": "Rishab Talusani",
@@ -54,7 +120,17 @@
       "rutgers_email": "rrt77@scarletmail.rutgers.edu",
       "discord_username": "rishab6639",
       "github_username": "Rishab-rt",
-      "repo_branch": "rishab/homework"
+      "repo_branch_metadata": {
+        "rishab/homework": {
+          "discovered_at": "2025-10-21T14:57:44.943Z",
+          "author": "Rishab Talusani",
+          "match_strategy": "first_name",
+          "commit_sha": "ae886c3c2a98cdad2128e5b17251bac200006de3"
+        }
+      },
+      "repo_branches": [
+        "rishab/homework"
+      ]
     },
     {
       "name": "Jenvi Patel",
@@ -62,7 +138,17 @@
       "rutgers_email": "jcp322@scarletmail.rutgers.edu",
       "discord_username": "jenvip_08",
       "github_username": "jenvip",
-      "repo_branch": "Jenvi/homework"
+      "repo_branch_metadata": {
+        "Jenvi/homework": {
+          "discovered_at": "2025-10-21T14:57:45.352Z",
+          "author": "jenvipatel",
+          "match_strategy": "first_name",
+          "commit_sha": "7d36fda988d95d4b88cf34421fe2211aeed224fe"
+        }
+      },
+      "repo_branches": [
+        "Jenvi/homework"
+      ]
     },
     {
       "name": "Louis Kuo Tsing Jen",
@@ -70,7 +156,23 @@
       "rutgers_email": "lgk31@scarletmail.rutgers.edu",
       "discord_username": "louisktj",
       "github_username": "louisktj",
-      "repo_branch": "lgk31-homework"
+      "repo_branch_metadata": {
+        "lgk31-homework": {
+          "discovered_at": "2025-10-21T14:57:45.773Z",
+          "author": "louisktj",
+          "match_strategy": "github_username",
+          "commit_sha": "dd37c1cc128644191c50ad3ef84d2c773b72496e"
+        },
+        "LouisKUO/homework": {
+          "discovered_at": "2025-10-21T15:24:56.903Z",
+          "author": "ayushmish605",
+          "match_strategy": "first_name_contains",
+          "commit_sha": "a885ae92e6684d8c333eca683e62a72585247c29"
+        }
+      },
+      "repo_branches": [
+        "lgk31-homework"
+      ]
     },
     {
       "name": "Raj Modi",
@@ -78,7 +180,23 @@
       "rutgers_email": "rnm82@scarletmail.rutgers.edu",
       "discord_username": "rjm92",
       "github_username": "Rjm923",
-      "repo_branch": "Raj/homework"
+      "repo_branch_metadata": {
+        "Raj/homework": {
+          "discovered_at": "2025-10-21T14:57:46.183Z",
+          "author": "Rjm923",
+          "match_strategy": "github_username",
+          "commit_sha": "42bd84c9abdce31c5af14aa770e30f608a39ce4f"
+        },
+        "rnm82": {
+          "discovered_at": "2025-10-21T14:57:46.183Z",
+          "author": "Rjm923",
+          "match_strategy": "github_username",
+          "commit_sha": "79a3f72ab03a953b2abe1516fce9e339987dfd5f"
+        }
+      },
+      "repo_branches": [
+        "rnm82"
+      ]
     },
     {
       "name": "Riyana Chaudhary",
@@ -86,7 +204,23 @@
       "rutgers_email": "rc1667@scarletmail.rutgers.edu",
       "discord_username": "riyanachaudhary",
       "github_username": "riyana27c-byte",
-      "repo_branch": "Riyana/homework"
+      "repo_branch_metadata": {
+        "Riyana/homework": {
+          "discovered_at": "2025-10-21T14:57:47.044Z",
+          "author": "Riyana Chaudhary",
+          "match_strategy": "first_name",
+          "commit_sha": "bf85365e30126987ccb23a9ed4abd9217bede541"
+        },
+        "hw1-Riyana": {
+          "discovered_at": "2025-10-21T15:24:58.476Z",
+          "author": "Riyana Chaudhary",
+          "match_strategy": "first_name_contains",
+          "commit_sha": "c6c7631da74d5e8a1fa208fb5a30aedece4db56c"
+        }
+      },
+      "repo_branches": [
+        "hw1-Riyana"
+      ]
     },
     {
       "name": "Bernardo Xie He",
@@ -94,7 +228,17 @@
       "rutgers_email": "bx83@scarletmail.rutgers.edu",
       "discord_username": "wrong4918",
       "github_username": "annberjin",
-      "repo_branch": "Bernardo/homework"
+      "repo_branch_metadata": {
+        "Bernardo/homework": {
+          "discovered_at": "2025-10-21T14:57:47.057Z",
+          "author": "annberjin",
+          "match_strategy": "github_username",
+          "commit_sha": "bed7d7fccb0de901bed87626e1d6e9401b608844"
+        }
+      },
+      "repo_branches": [
+        "Bernardo/homework"
+      ]
     },
     {
       "name": "Jason Ganeline",
@@ -102,7 +246,17 @@
       "rutgers_email": "jgg114@scarletmail.rutgers.edu",
       "discord_username": "jasoon_1",
       "github_username": "JasonGaneline",
-      "repo_branch": "Jason/homework"
+      "repo_branch_metadata": {
+        "Jason/homework": {
+          "discovered_at": "2025-10-21T14:57:47.481Z",
+          "author": "JasonGaneline",
+          "match_strategy": "github_username",
+          "commit_sha": "c1b52a40150cc31b933c7b453cda1f70cc133eb2"
+        }
+      },
+      "repo_branches": [
+        "Jason/homework"
+      ]
     },
     {
       "name": "Sanjay Senthilkumar",
@@ -110,7 +264,17 @@
       "rutgers_email": "ss4917@scarletmail.rutgers.edu",
       "discord_username": "sanjay_72423",
       "github_username": "Sanj84-co",
-      "repo_branch": "Sanjay/Homework"
+      "repo_branch_metadata": {
+        "Sanjay/Homework": {
+          "discovered_at": "2025-10-21T14:57:47.932Z",
+          "author": "Sanj84-co",
+          "match_strategy": "github_username",
+          "commit_sha": "2be7e44576130cd146ad313c1045c783ab7f9c9f"
+        }
+      },
+      "repo_branches": [
+        "Sanjay/Homework"
+      ]
     },
     {
       "name": "Arlene Heriveaux",
@@ -118,7 +282,17 @@
       "rutgers_email": "ah1687@scarletmail.rutgers.edu",
       "discord_username": "arlenie",
       "github_username": "arleneheriveaux",
-      "repo_branch": "Arlene/homework"
+      "repo_branch_metadata": {
+        "Arlene/homework": {
+          "discovered_at": "2025-10-21T14:57:48.380Z",
+          "author": "arleneheriveaux",
+          "match_strategy": "github_username",
+          "commit_sha": "e1f279eb4ac431ef45fea163ebc9029fcdc6e4ef"
+        }
+      },
+      "repo_branches": [
+        "Arlene/homework"
+      ]
     }
   ]
 }
