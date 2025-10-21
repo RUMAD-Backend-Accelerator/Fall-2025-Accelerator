@@ -1,6 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 
+// Helper: Convert absolute path to relative path from repo root
+function toRelativePath(absolutePath) {
+  const repoRoot = path.resolve(__dirname, '..');
+  return path.relative(repoRoot, absolutePath);
+}
+
 // Simple helper to attempt to require a module and return null on failure
 function tryRequire(relPath) {
   try {
@@ -19,14 +25,16 @@ function pretty(msg) {
 
 let logStream = null;
 
-async function run() {
+async function run(options = {}) {
   console.clear();
   
-  // Get directories from command line
+  // Get directories from command line or options
   // Usage 1: node test-problems.js hw1 (test hw1 folder with test-cases.json in hw1)
   // Usage 2: node test-problems.js hw1 hw1_submissions (test hw1_submissions using test-cases.json from hw1)
-  const homeworkDir = process.argv[2];
-  const submissionsDir = process.argv[3];
+  // Usage 3: node test-problems.js hw1 hw1_submissions --no-log (skip writing to markdown file)
+  const homeworkDir = options.homeworkDir || process.argv[2];
+  const submissionsDir = options.submissionsDir || process.argv[3];
+  const writeLog = options.writeLog !== false && !process.argv.includes('--no-log');
   
   if (!homeworkDir) {
     console.error('Error: No homework directory specified.');
@@ -132,13 +140,18 @@ async function run() {
     }
   }
 
-  // Create log file in test directory (Markdown format)
+  // Create log file in test directory (Markdown format) only if writeLog is true
   const logPath = path.join(testPath, `${testDir}_results.md`);
-  logStream = fs.createWriteStream(logPath, { flags: 'w' });
+  if (writeLog) {
+    logStream = fs.createWriteStream(logPath, { flags: 'w' });
+  }
 
   console.log(`\nRUMAD Test Runner for ${testDir}`);
   if (submissionsDir) {
     console.log(`Using test configuration from ${configDir}`);
+  }
+  if (!writeLog) {
+    console.log(`(Running in no-log mode - markdown file will not be generated)`);
   }
   console.log(`Testing ${foldersToTest.length} folder(s): ${foldersToTest.join(', ')}\n`);
 
@@ -181,6 +194,14 @@ async function run() {
       // try to require the student's module from the test directory
       const problemFile = problem.replace('p', 'problem');
       const modulePath = path.join(testPath, folder, problemFile);
+
+      // Clear module cache for this specific module to ensure fresh load
+      try {
+        const resolvedPath = require.resolve(modulePath);
+        delete require.cache[resolvedPath];
+      } catch (e) {
+        // Module not found yet, no cache to clear
+      }
 
       // Monkey-patch require to mock '../data/tasks-cases.json' if needed
       const Module = require('module');
@@ -492,7 +513,7 @@ async function run() {
     
     logStream.write(`---\n\n`);
     logStream.write(`**Test completed:** ${new Date().toLocaleString()}  \n`);
-    logStream.write(`**Log file:** \`${logPath}\`\n`);
+    logStream.write(`**Log file:** \`${toRelativePath(logPath)}\`\n`);
   }
   
   console.log('\nRunner finished.');
