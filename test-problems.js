@@ -23,6 +23,13 @@ function pretty(msg) {
   }
 }
 
+async function startServer(impl, port = 3000) {
+  const server = impl.listen(port, ()=> {
+    console.log(`Running student's server on port ${port}`);
+  })
+  return server
+}
+
 let logStream = null;
 
 async function run(options = {}) {
@@ -65,7 +72,7 @@ async function run(options = {}) {
     console.error(`Error: Test directory '${testDir}' does not exist.`);
     process.exitCode = 1;
     return;
-  }
+  } 
 
   // Check if test-cases.json exists in config directory
   const casesPath = path.join(configPath, 'test-cases.json');
@@ -122,6 +129,7 @@ async function run(options = {}) {
   // Extract setup configuration and test cases
   const setup = testConfig.setup || {};
   const dataFiles = setup.dataFiles || {};
+  const serverNeeded = setup.serverNeeded || null;
   
   // Remove 'setup' key to get only test case keys
   const cases = { ...testConfig };
@@ -161,10 +169,14 @@ async function run(options = {}) {
 
   // Helper to pick an implementation function from a module object
   function pickImpl(moduleObj, problemKey) {
-    if (!moduleObj) return null;
-    // If module itself is a function (module.exports = function) use it
-    if (typeof moduleObj === 'function') return moduleObj;
+    if (!moduleObj) return null
 
+    // If module itself is a function (module.exports = function) use it
+    // express app object is a callable so code below will run for this too
+    if (typeof moduleObj === 'function') {
+      return moduleObj 
+    };
+    
     // Try common named exports: solve, default
     const commonNames = ['solve', 'default'];
     for (const n of commonNames) {
@@ -181,11 +193,12 @@ async function run(options = {}) {
 
   // Collect results for all students
   const allResults = [];
+  let server = null
 
   // Test each folder
   for (const folder of foldersToTest) {
     const studentResult = { name: folder, problems: {}, failures: [] };
-
+    
     for (const problem of toRun) {
       if (!cases[problem]) {
         continue;
@@ -246,41 +259,82 @@ async function run(options = {}) {
         continue;
       }
 
+      // Run Express server if serverNeeded is True
+      // This will run for every folder checked => next student's server loads up
+      if (serverNeeded) {
+        server = await startServer(impl)
+      }
+
       const casesFor = cases[problem];
       let counters = { total: casesFor.length, passed: 0, failed: 0, skipped: 0 };
 
       for (const tc of casesFor) {
+        let result = null
         try {
           // Check if required data is available
           const dataKeys = tc.dataKeys || [];
           const missingData = dataKeys.filter(key => !loadedData[key]);
 
           if (missingData.length > 0) {
+            console.log("MISSING DATA")
             counters.skipped += 1;
             continue;
           }
+          if (tc.apiTest) { // Check if test case is an apiTest
+            // Check if server is null
+            if (server === null) {
+              counters.skipped += 1
+              continue;
+            }
 
-          // Build arguments for the function call
-          const args = [];
+            // Construct fetch arguments
+            api_method = tc.apiInfo.method.toUpperCase()
+            url = tc.apiInfo.url
+            body = tc.apiInfo.body
+            type = tc.apiInfo.type
+            
+            // Call test endpoint with args
+            // console.log(`Calling API ENDPOINT ${url} method ${api_method}`)
+            
+            // Construct options for API Requests
+            
+            let options = {
+               method: api_method
+            };
+            
+            // If POST, add headers and body
+            if(api_method == "POST" && body && type) {
+              options["headers"] = { 'Content-Type': type }
+              options["body"] = JSON.stringify(body)
+            } 
 
-          if (dataKeys.length > 0) {
-            args.push(loadedData[dataKeys[0]]);
+            // await result and convert to json
+            result = await fetch(url, options)
+            result = await result.json()
+
+          } else { // Build arguments for the function call
+            const args = [];
+          
+            if (dataKeys.length > 0) {
+              args.push(loadedData[dataKeys[0]]);
+            }
+            
+            const opts = tc.input || {};
+            
+            if (opts.courseIdentifier !== undefined) {
+              args.push(opts.courseIdentifier);
+            } else if (Object.keys(opts).length > 0 || impl.length >= 2) {
+              args.push(opts);
+            }
+
+            // Call the implementation with the constructed arguments
+            result = impl(...args);
           }
-
-          const opts = tc.input || {};
-
-          if (opts.courseIdentifier !== undefined) {
-            args.push(opts.courseIdentifier);
-          } else if (Object.keys(opts).length > 0 || impl.length >= 2) {
-            args.push(opts);
-          }
-
-          // Call the implementation with the constructed arguments
-          let result = impl(...args);
 
           // If result is a Promise, await it
           if (result && typeof result.then === 'function') {
-            result = await result;
+            console.log("awaited result")
+            result = await result.json();
           }
 
           // Check result validity
@@ -313,6 +367,7 @@ async function run(options = {}) {
               notes: tc.notes || ''
             });
           }
+          
         }
       }
 
@@ -320,6 +375,12 @@ async function run(options = {}) {
     }
 
     allResults.push(studentResult);
+
+    // Close Server after folder has ran
+    if (serverNeeded && server !== null) {
+      server.close()
+    }
+
   }
 
   // Write Markdown header to log file
