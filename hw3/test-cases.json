@@ -1,0 +1,397 @@
+{
+  "setup": {
+    "dataFiles": {
+      "taskCases": "data/tasks-cases.json"
+    },
+    "serverNeeded": true
+  },
+  "p1": [
+    { 
+      "name": "api-get-1", 
+      "dataKeys": ["taskCases"],
+      "apiTest": "true", 
+      "apiInfo": {
+        "url": "http://localhost:3000/api/2/tasks",
+        "method": "GET",
+        "type": ""
+      },
+      "input": {}, 
+      "expected": {
+        "data": {
+          "case_id": 2,
+          "tasks": 
+            [
+              {
+                "id": 1,
+                "title": "Do Backend Accelerator HW",
+                "description": "Finish all exercises and submit before midnight.",
+                "priority": "high",
+                "status": "In Progress",
+                "due_date": "2025-10-12",
+                "created_at": "2025-10-10T14:30:00Z",
+                "completed": false
+              },
+              {
+                "id": 2,
+                "title": "Prepare for Data Structures Midterm",
+                "description": "Review Trees, HashMaps, and Sets",
+                "priority": "high",
+                "status": "Not Started",
+                "due_date": "2025-10-13",
+                "created_at": "2025-10-10T15:00:00Z",
+                "completed": false
+              },
+              {
+                "id": 3,
+                "title": "Update Project ReadMe",
+                "description": "Add model architecture diagram and usage examples to documentation.",
+                "priority": "medium",
+                "status": "In Progress",
+                "due_date": "2025-10-14",
+                "created_at": "2025-10-10T16:20:00Z",
+                "completed": false
+              },
+              {
+                "id": 4,
+                "title": "Push latest web app updates to GitHub",
+                "description": "Commit new API routes and test coverage reports.",
+                "priority": "medium",
+                "status": "In Progress",
+                "due_date": "2025-10-13",
+                "created_at": "2025-10-10T17:00:00Z",
+                "completed": false
+              }
+            ]
+        }
+      }, 
+      "notes": "Echo test with hello" 
+    },
+    { 
+      "name": "api-get-2", 
+      "dataKeys": ["taskCases"], 
+      "apiTest": "true",
+      "apiInfo": {
+        "url": "http://localhost:3000/api/3/tasks",
+        "method": "GET",
+        "type": ""
+      },
+      "input": {}, 
+      "expected": {
+        "data": {
+          "case_id": 3,
+          "tasks": 
+            [
+              {
+                "id": 5,
+                "title": "Study Dynamic Programming problems",
+                "description": "Solve 3 medium LeetCode problems focused on memoization and tabulation.",
+                "priority": "high",
+                "status": "Not Started",
+                "due_date": "2025-10-14",
+                "created_at": "2025-10-10T17:45:00Z",
+                "completed": false
+              },
+              {
+                "id": 6,
+                "title": "Plan course schedule",
+                "description": "Look at Schedule of Classes and research courses",
+                "priority": "medium",
+                "status": "In Progress",
+                "due_date": "2025-10-16",
+                "created_at": "2025-10-10T18:10:00Z",
+                "completed": false
+              },
+              {
+                "id": 7,
+                "title": "Jog for 30 minutes",
+                "description": "Outdoor jog for fitness and stress relief.",
+                "priority": "low",
+                "status": "Completed",
+                "due_date": "2025-10-11",
+                "created_at": "2025-10-10T19:00:00Z",
+                "completed": true
+              },
+              {
+                "id": 8,
+                "title": "Organize Notion tasks for the week",
+                "description": "Review calendar and set up new weekly goals.",
+                "priority": "low",
+                "status": "Not Started",
+                "due_date": "2025-10-13",
+                "created_at": "2025-10-10T19:45:00Z",
+                "completed": false
+              }
+            ]
+        }
+      }, 
+      "notes": "Echo test with hello" 
+    },
+
+    { 
+      "name": "api-get-3", 
+      "dataKeys": ["taskCases"], 
+      "apiTest": "true",
+      "apiInfo": {
+        "url": "http://localhost:3000/api/4/tasks",
+        "method": "GET",
+        "type": ""
+      },
+      "input": {}, 
+      "expected": {
+        "data": {
+          "case_id": 4,
+          "tasks": 
+            [
+              {
+                "id": 9,
+                "title": "Go to Verizon recruiting event.",
+                "description": "",
+                "priority": "high",
+                "status": "In Progress",
+                "due_date": "2025-10-12",
+                "created_at": "2025-10-10T20:10:00Z",
+                "completed": false
+              },
+              {
+                "id": 10,
+                "title": "Refine LinkedIn Profile",
+                "description": "Update headline and add recent projects.",
+                "priority": "medium",
+                "status": "Not Started",
+                "due_date": "2025-10-15",
+                "created_at": "2025-10-10T21:00:00Z",
+                "completed": true
+              }
+            ]
+          }
+      }, 
+      "notes": "Echo test with hello" 
+    },
+
+    { 
+      "name": "api-get-4", 
+      "dataKeys": ["taskCases"], 
+      "apiTest": "true",
+      "apiInfo": {
+        "url": "http://localhost:3000/api/3/tasks?priority=high",
+        "method": "GET",
+        "type": ""
+      },
+      "input": {}, 
+      "expected": {
+        "data": [
+          {
+            "id": 5,
+            "title": "Study Dynamic Programming problems",
+            "description": "Solve 3 medium LeetCode problems focused on memoization and tabulation.",
+            "priority": "high",
+            "status": "Not Started",
+            "due_date": "2025-10-14",
+            "created_at": "2025-10-10T17:45:00Z",
+            "completed": false
+          }
+        ]
+      }, 
+      "notes": "Get tasks by priority" 
+    },
+
+    { 
+      "name": "api-get-5", 
+      "dataKeys": ["taskCases"], 
+      "apiTest": "true",
+      "apiInfo": {
+        "url": "http://localhost:3000/api/3/tasks?sort=duedate",
+        "method": "GET",
+        "type": ""
+      },
+      "input": {}, 
+      "expected": {
+      "data": [
+          {
+            "id": 7,
+            "title": "Jog for 30 minutes",
+            "description": "Outdoor jog for fitness and stress relief.",
+            "priority": "low",
+            "status": "Completed",
+            "due_date": "2025-10-11",
+            "created_at": "2025-10-10T19:00:00Z",
+            "completed": true
+          },
+          {
+            "id": 8,
+            "title": "Organize Notion tasks for the week",
+            "description": "Review calendar and set up new weekly goals.",
+            "priority": "low",
+            "status": "Not Started",
+            "due_date": "2025-10-13",
+            "created_at": "2025-10-10T19:45:00Z",
+            "completed": false
+          },
+          {
+            "id": 5,
+            "title": "Study Dynamic Programming problems",
+            "description": "Solve 3 medium LeetCode problems focused on memoization and tabulation.",
+            "priority": "high",
+            "status": "Not Started",
+            "due_date": "2025-10-14",
+            "created_at": "2025-10-10T17:45:00Z",
+            "completed": false
+          },
+          {
+            "id": 6,
+            "title": "Plan course schedule",
+            "description": "Look at Schedule of Classes and research courses",
+            "priority": "medium",
+            "status": "In Progress",
+            "due_date": "2025-10-16",
+            "created_at": "2025-10-10T18:10:00Z",
+            "completed": false
+          }
+        ]
+      }, 
+      "notes": "Get sorted tasks" 
+    },
+
+    { 
+      "name": "api-invalid-get-1", 
+      "dataKeys": ["taskCases"], 
+      "apiTest": "true",
+      "apiInfo": {
+        "url": "http://localhost:3000/api/eifoweif/tasks",
+        "method": "GET",
+        "type": ""
+      },
+      "input": {}, 
+      "expected": {
+        "data": "Invalid param: caseId is not a number."
+      }, 
+      "notes": "Error Handling for caseId NaN" 
+    },
+
+    { 
+      "name": "api-invalid-get-2", 
+      "dataKeys": ["taskCases"], 
+      "apiTest": "true",
+      "apiInfo": {
+        "url": "http://localhost:3000/api/1/tasks/janedoe",
+        "method": "GET",
+        "type": ""
+      },
+      "input": {}, 
+      "expected": {
+        "data": "Invalid param: taskId is not a number."
+      }, 
+      "notes": "Error handling for taskId NaN" 
+    },
+
+    { 
+      "name": "api-invalid-get-3", 
+      "dataKeys": ["taskCases"], 
+      "apiTest": "true",
+      "apiInfo": {
+        "url": "http://localhost:3000/api/4/tasks?priority=extreme",
+        "method": "GET",
+        "type": ""
+      },
+      "input": {}, 
+      "expected": {
+        "data": "Priority is not High, Low, or Medium."
+      }, 
+      "notes": "Invalid priority parameter" 
+    },
+
+    { 
+      "name": "api-post-1", 
+      "dataKeys": ["taskCases"],
+      "apiTest": "true", 
+      "apiInfo": {
+        "url": "http://localhost:3000/api/4/tasks",
+        "method": "POST",
+        "type": "application/json",
+        "body": {
+          "id": 11,
+          "title": "Career Mega Fair",
+          "description": "Update and print out resumes",
+          "priority": "high",
+          "status": "In Progress",
+          "due_date": "2025-11-28",
+          "created_at": "2025-10-20T20:10:00Z",
+          "completed": false
+        }
+      },
+      "input": {}, 
+      "expected": {
+        "data": {
+          "caseId": 4,
+          "task": {
+            "id": 11,
+            "title": "Career Mega Fair",
+            "description": "Update and print out resumes",
+            "priority": "high",
+            "status": "In Progress",
+            "due_date": "2025-11-28",
+            "created_at": "2025-10-20T20:10:00Z",
+            "completed": false
+          }
+        }
+      }, 
+      "notes": "Creating new task" 
+    },
+    { 
+      "name": "api-post-2", 
+      "dataKeys": ["taskCases"],
+      "apiTest": "true", 
+      "apiInfo": {
+        "url": "http://localhost:3000/api/10/tasks",
+        "method": "POST",
+        "type": "application/json",
+        "body": {
+          "id": 11,
+          "title": "Career Mega Fair",
+          "description": "Update and print out resumes",
+          "priority": "high",
+          "status": "In Progress",
+          "due_date": "2025-11-28",
+          "created_at": "2025-10-20T20:10:00Z",
+          "completed": false
+        }
+      },
+      "input": {}, 
+      "expected": {
+        "data": "Could not find taskCase at given caseId."
+      }, 
+      "notes": "Invalid caseID, return error" 
+    },
+
+    { 
+      "name": "api-post-3", 
+      "dataKeys": ["taskCases"],
+      "apiTest": "true", 
+      "apiInfo": {
+        "url": "http://localhost:3000/api/2/tasks/1/complete",
+        "method": "POST",
+        "type": "application/json",
+        "body": {
+          "completed": true
+        }
+      },
+      "input": {}, 
+      "expected": {
+        "data": {
+          "caseId": 2,
+          "task": {
+            "id": 1,
+            "title": "Do Backend Accelerator HW",
+            "description": "Finish all exercises and submit before midnight.",
+            "priority": "high",
+            "status": "In Progress",
+            "due_date": "2025-10-12",
+            "created_at": "2025-10-10T14:30:00Z",
+            "completed": true
+          }
+        }
+      }, 
+      "notes": "Mark task as complete" 
+    }
+  ]
+}
