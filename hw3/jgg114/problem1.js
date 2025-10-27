@@ -73,7 +73,6 @@ const getAllTasks = (caseId) => {
   return correctTaskCase;
 
 };
-
 //GIVEN: Gets task by caseId and taskId
 const getTaskByTaskId = (caseId, taskId) => {
   const correctTaskCase = getAllTasks(caseId);
@@ -93,7 +92,6 @@ const getTaskByTaskId = (caseId, taskId) => {
   }
   return res
 }
-
 //GIVEN: Sorts tasks by due date given a caseId
 const sortTasksByDueDate = (caseId) => {
   // extracts desired task case index and list of tasks
@@ -139,7 +137,6 @@ const sortTasksByDueDate = (caseId) => {
   // would be replaced with `res.send({ data: taskList })` in real scenario
   return taskList;
 };
-
 //GIVEN: Gets tasks filtered by priority
 const getTasksByPriority = (caseId, priority) => {
   // Get taskCase using driver function
@@ -157,7 +154,6 @@ const getTasksByPriority = (caseId, priority) => {
   // return filtered tasks
   return filtered_tasks
 }
-
 // Basic test that Express is working
 app.get("/", (req, res) => {
     res.send("HW3!!")
