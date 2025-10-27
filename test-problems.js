@@ -1,6 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 
+// Helper: Convert absolute path to relative path from repo root
+function toRelativePath(absolutePath) {
+  const repoRoot = path.resolve(__dirname, '..');
+  return path.relative(repoRoot, absolutePath);
+}
+
 // Simple helper to attempt to require a module and return null on failure
 function tryRequire(relPath) {
   try {
@@ -17,16 +23,25 @@ function pretty(msg) {
   }
 }
 
+async function startServer(impl, port = 3000) {
+  const server = impl.listen(port, ()=> {
+    console.log(`Running student's server on port ${port}`);
+  })
+  return server
+}
+
 let logStream = null;
 
-async function run() {
+async function run(options = {}) {
   console.clear();
   
-  // Get directories from command line
+  // Get directories from command line or options
   // Usage 1: node test-problems.js hw1 (test hw1 folder with test-cases.json in hw1)
   // Usage 2: node test-problems.js hw1 hw1_submissions (test hw1_submissions using test-cases.json from hw1)
-  const homeworkDir = process.argv[2];
-  const submissionsDir = process.argv[3];
+  // Usage 3: node test-problems.js hw1 hw1_submissions --no-log (skip writing to markdown file)
+  const homeworkDir = options.homeworkDir || process.argv[2];
+  const submissionsDir = options.submissionsDir || process.argv[3];
+  const writeLog = options.writeLog !== false && !process.argv.includes('--no-log');
   
   if (!homeworkDir) {
     console.error('Error: No homework directory specified.');
@@ -57,7 +72,7 @@ async function run() {
     console.error(`Error: Test directory '${testDir}' does not exist.`);
     process.exitCode = 1;
     return;
-  }
+  } 
 
   // Check if test-cases.json exists in config directory
   const casesPath = path.join(configPath, 'test-cases.json');
@@ -114,6 +129,7 @@ async function run() {
   // Extract setup configuration and test cases
   const setup = testConfig.setup || {};
   const dataFiles = setup.dataFiles || {};
+  const serverNeeded = setup.serverNeeded || null;
   
   // Remove 'setup' key to get only test case keys
   const cases = { ...testConfig };
@@ -132,13 +148,18 @@ async function run() {
     }
   }
 
-  // Create log file in test directory (Markdown format)
+  // Create log file in test directory (Markdown format) only if writeLog is true
   const logPath = path.join(testPath, `${testDir}_results.md`);
-  logStream = fs.createWriteStream(logPath, { flags: 'w' });
+  if (writeLog) {
+    logStream = fs.createWriteStream(logPath, { flags: 'w' });
+  }
 
   console.log(`\nRUMAD Test Runner for ${testDir}`);
   if (submissionsDir) {
     console.log(`Using test configuration from ${configDir}`);
+  }
+  if (!writeLog) {
+    console.log(`(Running in no-log mode - markdown file will not be generated)`);
   }
   console.log(`Testing ${foldersToTest.length} folder(s): ${foldersToTest.join(', ')}\n`);
 
@@ -148,10 +169,14 @@ async function run() {
 
   // Helper to pick an implementation function from a module object
   function pickImpl(moduleObj, problemKey) {
-    if (!moduleObj) return null;
-    // If module itself is a function (module.exports = function) use it
-    if (typeof moduleObj === 'function') return moduleObj;
+    if (!moduleObj) return null
 
+    // If module itself is a function (module.exports = function) use it
+    // express app object is a callable so code below will run for this too
+    if (typeof moduleObj === 'function') {
+      return moduleObj 
+    };
+    
     // Try common named exports: solve, default
     const commonNames = ['solve', 'default'];
     for (const n of commonNames) {
@@ -168,11 +193,12 @@ async function run() {
 
   // Collect results for all students
   const allResults = [];
+  let server = null
 
   // Test each folder
   for (const folder of foldersToTest) {
     const studentResult = { name: folder, problems: {}, failures: [] };
-
+    
     for (const problem of toRun) {
       if (!cases[problem]) {
         continue;
@@ -181,8 +207,36 @@ async function run() {
       // try to require the student's module from the test directory
       const problemFile = problem.replace('p', 'problem');
       const modulePath = path.join(testPath, folder, problemFile);
-      const mod = tryRequire(modulePath);
-      
+
+      // Clear module cache for this specific module to ensure fresh load
+      try {
+        const resolvedPath = require.resolve(modulePath);
+        delete require.cache[resolvedPath];
+      } catch (e) {
+        // Module not found yet, no cache to clear
+      }
+
+      // Monkey-patch require to mock '../data/tasks-cases.json' if needed
+      const Module = require('module');
+      const originalRequire = Module.prototype.require;
+      Module.prototype.require = function (request) {
+        // Support both Unix and Windows path separators
+        if (request === '../data/tasks-cases.json' || request === '..\\data\\tasks-cases.json') {
+          // Return the loadedData for the key 'taskCases' if available, else throw
+          if (loadedData.taskCases) return loadedData.taskCases;
+          throw new Error('Mocked data file not found');
+        }
+        return originalRequire.apply(this, arguments);
+      };
+
+      let mod;
+      try {
+        mod = tryRequire(modulePath);
+      } finally {
+        // Restore original require after loading
+        Module.prototype.require = originalRequire;
+      }
+
       // Check if module loading failed
       if (mod && mod.error) {
         studentResult.problems[problem] = { status: 'LOAD_ERROR', error: mod.error, passed: 0, total: 0, failed: 0, skipped: 0 };
@@ -193,7 +247,7 @@ async function run() {
         });
         continue;
       }
-      
+
       const impl = pickImpl(mod, problem);
 
       if (!impl) {
@@ -205,41 +259,82 @@ async function run() {
         continue;
       }
 
+      // Run Express server if serverNeeded is True
+      // This will run for every folder checked => next student's server loads up
+      if (serverNeeded) {
+        server = await startServer(impl)
+      }
+
       const casesFor = cases[problem];
       let counters = { total: casesFor.length, passed: 0, failed: 0, skipped: 0 };
 
       for (const tc of casesFor) {
+        let result = null
         try {
           // Check if required data is available
           const dataKeys = tc.dataKeys || [];
           const missingData = dataKeys.filter(key => !loadedData[key]);
-          
+
           if (missingData.length > 0) {
+            console.log("MISSING DATA")
             counters.skipped += 1;
             continue;
           }
+          if (tc.apiTest) { // Check if test case is an apiTest
+            // Check if server is null
+            if (server === null) {
+              counters.skipped += 1
+              continue;
+            }
 
-          // Build arguments for the function call
-          const args = [];
-          
-          if (dataKeys.length > 0) {
-            args.push(loadedData[dataKeys[0]]);
-          }
-          
-          const opts = tc.input || {};
-          
-          if (opts.courseIdentifier !== undefined) {
-            args.push(opts.courseIdentifier);
-          } else if (Object.keys(opts).length > 0 || impl.length >= 2) {
-            args.push(opts);
-          }
+            // Construct fetch arguments
+            api_method = tc.apiInfo.method.toUpperCase()
+            url = tc.apiInfo.url
+            body = tc.apiInfo.body
+            type = tc.apiInfo.type
+            
+            // Call test endpoint with args
+            // console.log(`Calling API ENDPOINT ${url} method ${api_method}`)
+            
+            // Construct options for API Requests
+            
+            let options = {
+               method: api_method
+            };
+            
+            // If POST, add headers and body
+            if(api_method == "POST" && body && type) {
+              options["headers"] = { 'Content-Type': type }
+              options["body"] = JSON.stringify(body)
+            } 
 
-          // Call the implementation with the constructed arguments
-          let result = impl(...args);
+            // await result and convert to json
+            result = await fetch(url, options)
+            result = await result.json()
+
+          } else { // Build arguments for the function call
+            const args = [];
+          
+            if (dataKeys.length > 0) {
+              args.push(loadedData[dataKeys[0]]);
+            }
+            
+            const opts = tc.input || {};
+            
+            if (opts.courseIdentifier !== undefined) {
+              args.push(opts.courseIdentifier);
+            } else if (Object.keys(opts).length > 0 || impl.length >= 2) {
+              args.push(opts);
+            }
+
+            // Call the implementation with the constructed arguments
+            result = impl(...args);
+          }
 
           // If result is a Promise, await it
           if (result && typeof result.then === 'function') {
-            result = await result;
+            console.log("awaited result")
+            result = await result.json();
           }
 
           // Check result validity
@@ -272,6 +367,7 @@ async function run() {
               notes: tc.notes || ''
             });
           }
+          
         }
       }
 
@@ -279,6 +375,12 @@ async function run() {
     }
 
     allResults.push(studentResult);
+
+    // Close Server after folder has ran
+    if (serverNeeded && server !== null) {
+      server.close()
+    }
+
   }
 
   // Write Markdown header to log file
@@ -472,15 +574,23 @@ async function run() {
     
     logStream.write(`---\n\n`);
     logStream.write(`**Test completed:** ${new Date().toLocaleString()}  \n`);
-    logStream.write(`**Log file:** \`${logPath}\`\n`);
+    logStream.write(`**Log file:** \`${toRelativePath(logPath)}\`\n`);
   }
   
   console.log('\nRunner finished.');
+  
+  // Build return object for programmatic access
+  const resultsObject = {};
+  for (const result of allResults) {
+    resultsObject[result.name] = result.problems;
+  }
   
   if (logStream) {
     logStream.end();
     console.log(`\nLog file created: ${logPath}`);
   }
+  
+  return resultsObject;
 }
 
 if (require.main === module) run();
