@@ -169,11 +169,37 @@ app.get("/", (req, res) => {
 
 app.get("/api/:caseId/tasks", (req, res) => {
   // TODO: Retrieve caseID parameter and validate caseId
+  const caseId = Number(req.params.caseId);
+  if (isNaN(caseId)) {
+    return res.status(400).send({data : errorMsg.invalidCaseId});
+  }
+
   // TODO: Retrieve tasks using getAllTasks
+  let caseData = getAllTasks(caseId);
+  if (!caseData) {
+    return res.status(404).send({data : errorMsg.taskCaseNotFound});
+  }
+  let tasks = caseData.tasks;
   // TODO: Handle optional filtering by priority
+  if (req.query.priority) {
+    const priority = req.query.priority.toLowerCase();
+    if (!["high", "medium", "low"].includes(priority)) {
+      return res.status(400).send({data : errorMsg.invalidPriority});
+    }
+    tasks = getTasksByPriority(caseId, priority);
+    return res.send({data: tasks})
+  }
   // TODO: Handle optional sorting by due date
-  
-  res.send({ "data": [] }) // Replace [] with actual tasks
+  if (req.query.sort && req.query.sort.toLowerCase() === "duedate") {
+    let tasksbyDueDate = sortTasksByDueDate(caseId);
+    return res.send({data: tasksbyDueDate})
+  }
+  res.send({
+    data: {
+      case_id: caseId, 
+      tasks: tasks
+    } 
+  }) // Replace [] with actual tasks
 })
 
 //TO DO: Get individual task by caseId and taskId
@@ -182,8 +208,20 @@ app.get("/api/:caseId/tasks", (req, res) => {
 
 app.get("/api/:caseId/tasks/:taskId", (req, res) => {
   // TODO: Retrieve parameters and validate them
+  const caseId = Number(req.params.caseId);
+  const taskId = Number(req.params.taskId);
+  if (isNaN(caseId)) {
+    return res.status(400).send({data : errorMsg.invalidCaseId});
+  }
+  if (isNaN(taskId)) {
+    return res.status(400).send({data : errorMsg.invalidTaskId});
+  }
   // TODO: Use getTaskByTaskId to fetch and return task
-  res.send({ "data": {} }) // Replace {} with the task
+  const task = getTaskByTaskId(caseId, taskId);
+  if (!task) {
+    return res.status(404).send({data : errorMsg.taskCaseNotFound});
+  }
+  res.send({ data: task }) // Replace {} with the task
 })
 
 //TO DO: Create a new task based on task JSON sent by client.
@@ -192,16 +230,28 @@ app.get("/api/:caseId/tasks/:taskId", (req, res) => {
 
 app.post("/api/:caseId/tasks", (req, res) => {
   // TODO: Retrieve caseId parameter and validate it.
+  const caseId = Number(req.params.caseId);
+  if (isNaN(caseId)) {
+    return res.status(400).send({data : errorMsg.invalidCaseId});
+  }
   // TODO: Retrieve task information from req
     // You can assume the id is given to you and all task properties are valid already
-
+  const caseData = getAllTasks(caseId);
+  if (!caseData) {
+    return res.status(404).send({data : errorMsg.taskCaseNotFound});
+  }
+  const newTask = req.body;
+  if (!newTask || typeof newTask !== 'object') {
+    return res.status(400).send({data : errorMsg.couldNotParseTask});
+  }
   // TODO: Add new task to tasks
+  caseData.tasks.push(newTask);
   // TODO: Return result with caseId and added task
 
   res.send({
     data: {
-      caseId: -1, //replace -1 with caseId
-      task: {}, // replace {} with task that was just added
+      caseId: caseId, //replace -1 with caseId
+      task: newTask, // replace {} with task that was just added
     },
   })
 })
@@ -210,16 +260,29 @@ app.post("/api/:caseId/tasks", (req, res) => {
 // POST /api/:caseId/tasks/:taskId/complete
 // Marks a specific task as completed
 app.post("/api/:caseId/tasks/:taskId/complete", (req, res) => {
-  
+
   // TODO: Retrieve parameters and validate them.
+  const caseId = Number(req.params.caseId);
+  if (isNaN(caseId)) {
+    return res.status(400).send({data : errorMsg.invalidCaseId});
+  }
+  const taskId = Number(req.params.taskId);
+  if (isNaN(taskId)) {
+    return res.status(400).send({data : errorMsg.invalidTaskId});
+  }
   // TODO: Use getTaskByTaskId to locate the task
+  const task = getTaskByTaskId(caseId, taskId);
+  if (!task) {
+    return res.status(404).send({data : errorMsg.taskCaseNotFound});
+  }
   // TODO: Mark the task as completed = true
+  task.completed = true;
   // TODO: Return updated task and caseId
 
   res.send({
     data: {
-      caseId: -1,
-      task: {},
+      caseId: caseId,
+      task: task,
     },
   })
 })
