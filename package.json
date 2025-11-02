@@ -15,15 +15,11 @@
   "bugs": {
     "url": "https://github.com/RUMAD-Backend-Accelerator/Fall-2025-Accelerator/issues"
   },
-<<<<<<< HEAD
-  "homepage": "https://github.com/RUMAD-Backend-Accelerator/Fall-2025-Accelerator#readme"
-=======
   "homepage": "https://github.com/RUMAD-Backend-Accelerator/Fall-2025-Accelerator#readme",
   "dependencies": {
     "axios": "^1.12.2",
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.6.1",
     "express": "^5.1.0",
     "open": "^9.0.0"
   }
->>>>>>> 643357eaa10d3ce4288bf354c4c8d9f96c8b03b5
 }

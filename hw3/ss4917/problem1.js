@@ -176,8 +176,31 @@ app.get("/api/:caseId/tasks", (req, res) => {
   // TODO: Retrieve tasks using getAllTasks
   // TODO: Handle optional filtering by priority
   // TODO: Handle optional sorting by due date
-  
-  res.send({ "data": [] }) // Replace [] with actual tasks
+     //res.send(Number(req.params.caseId))
+     if(isNaN(Number(req.params.caseId))){
+      res.send(errorMsg['invalidCaseId'])
+     }else{
+      let sas = getAllTasks(Number(req.params.caseId))
+      if(!sas){
+        res.send(errorMsg['couldNotParseTask'])
+      }else{
+        let t = sas.tasks
+        if(req.query.priority!=undefined){
+          t =  getTasksByPriority(Number(req.params.caseId),req.query.priority)
+        }
+        if(req.query.sort!=undefined){
+          t = sortTasksByDueDate(Number(req.params.caseId))
+        }
+        res.send({"data":t})
+        }
+      }
+        
+    // if(Number(req.params.caseId)==NaN){
+      //res.send(errorMsg['invalidCaseId'])
+     //}else{
+      // res.send(req.params.caseId)
+     //}
+ // Replace [] with actual tasks
 })
 
 //TO DO: Get individual task by caseId and taskId
