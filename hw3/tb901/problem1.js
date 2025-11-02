@@ -176,6 +176,11 @@ app.get("/api/:caseId/tasks", (req, res) => {
   // TODO: Retrieve tasks using getAllTasks
   // TODO: Handle optional filtering by priority
   // TODO: Handle optional sorting by due date
+  const caseID  = req.body
+  if(NaN(caseID)){
+    return res.send
+    
+  }
   
   res.send({ "data": [] }) // Replace [] with actual tasks
 })
