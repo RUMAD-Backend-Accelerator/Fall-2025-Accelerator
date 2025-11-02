@@ -178,22 +178,27 @@ app.get("/api/:caseId/tasks", (req, res) => {
   // TODO: Handle optional sorting by due date
      //res.send(Number(req.params.caseId))
      if(isNaN(Number(req.params.caseId))){
-      res.send(errorMsg['invalidCaseId'])
+      res.status(400).send(errorMsg['invalidCaseId'])
      }else{
-      let sas = getAllTasks(Number(req.params.caseId))
+      sas = getAllTasks(Number(req.params.caseId))
       if(!sas){
-        res.send(errorMsg['couldNotParseTask'])
+        res.status(400).send(errorMsg['taskCaseNotFound'])
       }else{
-        let t = sas.tasks
         if(req.query.priority!=undefined){
-          t =  getTasksByPriority(Number(req.params.caseId),req.query.priority)
-        }
-        if(req.query.sort!=undefined){
-          t = sortTasksByDueDate(Number(req.params.caseId))
-        }
-        res.send({"data":t})
+          if(req.query.priority.toLowerCase() != "high" && req.query.priority.toLowerCase() != "low"&&req.query.priority.toLowerCase() != "medium"){
+            res.status(400).send(errorMsg['invalidPriority'])
+          }else{
+            sas =  getTasksByPriority(Number(req.params.caseId),req.query.priority)
+            res.send({"data":sas})
+          }
+        }else if(req.query.sort!=undefined){
+          sas =  sortTasksByDueDate(Number(req.params.caseId))
+          res.send({"data":sas})
+        }else{
+          res.send({"data":sas})
         }
       }
+    }
         
     // if(Number(req.params.caseId)==NaN){
       //res.send(errorMsg['invalidCaseId'])
@@ -210,7 +215,26 @@ app.get("/api/:caseId/tasks", (req, res) => {
 app.get("/api/:caseId/tasks/:taskId", (req, res) => {
   // TODO: Retrieve parameters and validate them
   // TODO: Use getTaskByTaskId to fetch and return task
-  res.send({ "data": {} }) // Replace {} with the task
+    let c = Number(req.params.caseId)
+    let t = Number(req.params.taskId)
+    if(isNaN(c)&& isNaN(t)){
+     res.status(400).send(errorMsg['invalidCaseId'] + errorMsg['invalidTaskId'])
+    }else if (isNaN(c)){
+      res.status(400).send(errorMsg['invalidCaseId'])
+    } else if(isNaN(t)){
+      res.status(400).send(errorMsg['invalidTaskId'])
+    }
+    let ta = getAllTasks(c)
+    if(!ta){
+      res.send(errorMsg['taskCaseNotFound'])
+    }else{
+      let sa = getTaskByTaskId(c,t)
+      if(!sa){
+        res.send(errorMsg['couldNotParseTask'])
+      }else{
+        res.send({ "data": sa })
+      } 
+    } // Replace {} with the task
 })
 
 //TO DO: Create a new task based on task JSON sent by client.
@@ -224,11 +248,23 @@ app.post("/api/:caseId/tasks", (req, res) => {
 
   // TODO: Add new task to tasks
   // TODO: Return result with caseId and added task
-
-  res.send({
+     let a = Number(req.params.caseId)
+      if(isNaN(a)){
+        res.send(errorMsg['invalidCaseId'])
+      }
+     
+     let t = req.body
+     let retreieve = getAllTasks(a)
+     if(!retreieve){
+      res.status(400).send(errorMsg['taskCaseNotFound'])
+     }else{
+      let ab = retreieve['tasks']
+      ab.push(t)
+     }
+    res.send({
     data: {
-      caseId: -1, //replace -1 with caseId
-      task: {}, // replace {} with task that was just added
+      caseId: a, //replace -1 with caseId
+      task: t, // replace {} with task that was just added
     },
   })
 })
@@ -242,13 +278,32 @@ app.post("/api/:caseId/tasks/:taskId/complete", (req, res) => {
   // TODO: Use getTaskByTaskId to locate the task
   // TODO: Mark the task as completed = true
   // TODO: Return updated task and caseId
-
-  res.send({
-    data: {
-      caseId: -1,
-      task: {},
-    },
-  })
+  let c = Number(req.params.caseId)
+  let t = Number(req.params.taskId)
+  if(isNaN(c)&& isNaN(t)){
+   res.status(400).send(errorMsg['invalidCaseId'] + errorMsg['invalidTaskId'])
+  }else if (isNaN(c)){
+    res.status(400).send(errorMsg['invalidCaseId'])
+  } else if(isNaN(t)){
+    res.status(400).send(errorMsg['invalidTaskId'])
+  }
+  let ta = getAllTasks(c)
+  if(!ta){
+    res.status(400).send(errorMsg['taskCaseNotFound'])
+  }else{
+    let sa = getTaskByTaskId(c,t)
+    if(!sa){
+      res.status(400).send(errorMsg['couldNotParseTask'])
+    }else{
+      sa['completed'] = true
+      res.send({
+        data: {
+          caseId: c,
+          task: sa,
+        },
+      })
+    } 
+  }
 })
 
 //start up express app
