@@ -5,7 +5,7 @@
  *    2. Getting a task by taskId.
  *    3. Getting <high, medium, low> priority tasks for a CaseId.
  *    4. Marking a task as complete.
- *    5. Creating a new task.
+ *    5. Creating a new task. 
  * 
  * Directions:
  * - Implement 5 API Routes:
@@ -36,7 +36,7 @@
 
 const taskCases = require('../data/tasks-cases.json');
 
-//Instantiate your express server.
+//Instantiate your express server. This sets up Express and allows it to read JSON from HTTP requests. 
 const express = require('express')
 const app = express()
 const port = 3000
@@ -74,7 +74,7 @@ const getAllTasks = (caseId) => {
 
 };
 
-//GIVEN: Gets task by caseId and taskId
+//GIVEN: Gets task by caseId and taskId (returns a single task)
 const getTaskByTaskId = (caseId, taskId) => {
   const correctTaskCase = getAllTasks(caseId);
   
@@ -94,7 +94,7 @@ const getTaskByTaskId = (caseId, taskId) => {
   return res
 }
 
-//GIVEN: Sorts tasks by due date given a caseId
+//GIVEN: Sorts tasks by due date given a caseId 
 const sortTasksByDueDate = (caseId) => {
   // extracts desired task case index and list of tasks
   let taskList = getAllTasks(caseId)
@@ -176,8 +176,35 @@ app.get("/api/:caseId/tasks", (req, res) => {
   // TODO: Retrieve tasks using getAllTasks
   // TODO: Handle optional filtering by priority
   // TODO: Handle optional sorting by due date
-  
-  res.send({ "data": [] }) // Replace [] with actual tasks
+  const CaseId = parseInt(req.params.caseId); //converts string param into an integer (if string isn't numeric, parseInt returns NaN)
+  const {sort, priority} = req.query; //destructures query parameters
+
+  //if caseID isn't a number, return HTTP 400 with error message
+  if(isNaN(caseID)) {
+    return res.status(400).send({error: errorMsg.invalidCaseId});
+  }
+
+  const taskCase = getAllTasks(caseId); //get the case object
+  //if case isn't found, return HTTP 404 (not found)
+  if(!taskCase) {
+    return res.status(404).send({error: errorMsg.taskCaseNotFound});
+  }
+
+  if(priority) {
+    const valid = ["high", "medium", "low"]; //allowed values for priority
+    if(!valid.includes(priority.toLowerCase())) {
+      return res.status(400).send({error: errorMsg.invalidPriority}); //check for valid priority 
+    }
+    const filtered = getTasksByPriority(caseID, priority);
+    return res.send({data:filtered});
+  }
+
+  if(sort && sort.toLowerCase() === "duedate") {
+    const sorted = sortTasksByDueDate(caseId);
+    return res.send({data:sorted});
+  }
+
+  res.send({ "data": taskCase.tasks }) // Replace [] with actual tasks
 })
 
 //TO DO: Get individual task by caseId and taskId
@@ -187,7 +214,18 @@ app.get("/api/:caseId/tasks", (req, res) => {
 app.get("/api/:caseId/tasks/:taskId", (req, res) => {
   // TODO: Retrieve parameters and validate them
   // TODO: Use getTaskByTaskId to fetch and return task
-  res.send({ "data": {} }) // Replace {} with the task
+  const CaseId = parseInt(req.params.caseId);
+  const taskId = parseInt(req.params.taskId);
+
+  if(isNaN(caseId)) {
+    return res.status(400).send({error: errorMsg.invalidCaseId});
+  }
+
+  if(isNaN(taskId)) {
+    return res.status(404).send({error: errorMsg.taskCaseNotFound});
+  }
+
+  res.send({ "data": task }) // Replace {} with the task
 })
 
 //TO DO: Create a new task based on task JSON sent by client.
@@ -202,10 +240,26 @@ app.post("/api/:caseId/tasks", (req, res) => {
   // TODO: Add new task to tasks
   // TODO: Return result with caseId and added task
 
+  const caseId = parseInt(req.params.caseId);
+  if(isNaN(caseId)) {
+    return res.status(400).send({error: errorMsg.invalidCaseId});
+  }
+
+  const taskCase = getAllTasks(caseId);
+  if(!taskCase) {
+    return res.status(404).send({error: errorMsg.taskCaseNotFound});
+  }
+
+  const newTask = req.body;
+  if(!newTask || !newTask.id) {
+    return res.status(400).send({error: errorMsg.couldNotParseTask});
+  }
+
+  taskCase.tasks.push(newTask);
   res.send({
     data: {
-      caseId: -1, //replace -1 with caseId
-      task: {}, // replace {} with task that was just added
+      caseId, //replace -1 with caseId
+      task: newTask, // replace {} with task that was just added
     },
   })
 })
@@ -219,11 +273,27 @@ app.post("/api/:caseId/tasks/:taskId/complete", (req, res) => {
   // TODO: Use getTaskByTaskId to locate the task
   // TODO: Mark the task as completed = true
   // TODO: Return updated task and caseId
+  const caseId = parseInt(req.params.caseId);
+  const taskId = parseInt(req.params.taskId);
 
+  if(isNaN(caseId)) {
+    return res.status(400).send({error: errorMsg.invalidCaseId});
+  }
+
+  if(isNaN(taskId)) {
+    return res.status(400).send({error: errorMsg.invalidTaskId});
+  }
+
+  const task = getTaskByTaskId(caseId, taskId);
+  if(!task) {
+    return res.status(404).send({error: errorMsg.taskCaseNotFound});
+  }
+
+  task.completed = true;
   res.send({
     data: {
-      caseId: -1,
-      task: {},
+      caseId,
+      task
     },
   })
 })
