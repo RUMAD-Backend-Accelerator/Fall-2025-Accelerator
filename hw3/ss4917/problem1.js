@@ -176,17 +176,17 @@ app.get("/api/:caseId/tasks", (req, res) => {
   // TODO: Retrieve tasks using getAllTasks
   // TODO: Handle optional filtering by priority
   // TODO: Handle optional sorting by due date
-     //res.send(Number(req.params.caseId))
+    
      if(isNaN(Number(req.params.caseId))){
-      res.status(400).send(errorMsg['invalidCaseId'])
+      res.status(400).send({"data":errorMsg['invalidCaseId']})
      }else{
       sas = getAllTasks(Number(req.params.caseId))
       if(!sas){
-        res.status(400).send(errorMsg['taskCaseNotFound'])
+        res.status(400).send({"data":errorMsg['taskCaseNotFound']})
       }else{
         if(req.query.priority!=undefined){
           if(req.query.priority.toLowerCase() != "high" && req.query.priority.toLowerCase() != "low"&&req.query.priority.toLowerCase() != "medium"){
-            res.status(400).send(errorMsg['invalidPriority'])
+            res.status(400).send({"data":errorMsg['invalidPriority']})
           }else{
             sas =  getTasksByPriority(Number(req.params.caseId),req.query.priority)
             res.send({"data":sas})
@@ -199,13 +199,6 @@ app.get("/api/:caseId/tasks", (req, res) => {
         }
       }
     }
-        
-    // if(Number(req.params.caseId)==NaN){
-      //res.send(errorMsg['invalidCaseId'])
-     //}else{
-      // res.send(req.params.caseId)
-     //}
- // Replace [] with actual tasks
 })
 
 //TO DO: Get individual task by caseId and taskId
@@ -218,19 +211,19 @@ app.get("/api/:caseId/tasks/:taskId", (req, res) => {
     let c = Number(req.params.caseId)
     let t = Number(req.params.taskId)
     if(isNaN(c)&& isNaN(t)){
-     res.status(400).send(errorMsg['invalidCaseId'] + errorMsg['invalidTaskId'])
+     res.status(400).send({"data":errorMsg['invalidCaseId'] + errorMsg['invalidTaskId']})
     }else if (isNaN(c)){
-      res.status(400).send(errorMsg['invalidCaseId'])
+      res.status(400).send({"data":errorMsg['invalidCaseId']})
     } else if(isNaN(t)){
-      res.status(400).send(errorMsg['invalidTaskId'])
+      res.status(400).send({"data":errorMsg['invalidTaskId']})
     }
     let ta = getAllTasks(c)
     if(!ta){
-      res.send(errorMsg['taskCaseNotFound'])
+      res.send({"data":errorMsg['taskCaseNotFound']})
     }else{
       let sa = getTaskByTaskId(c,t)
       if(!sa){
-        res.send(errorMsg['couldNotParseTask'])
+        res.send({"data":errorMsg['couldNotParseTask']})
       }else{
         res.send({ "data": sa })
       } 
@@ -250,13 +243,13 @@ app.post("/api/:caseId/tasks", (req, res) => {
   // TODO: Return result with caseId and added task
      let a = Number(req.params.caseId)
       if(isNaN(a)){
-        res.send(errorMsg['invalidCaseId'])
+        res.send({"data":errorMsg['invalidCaseId']})
       }
      
      let t = req.body
      let retreieve = getAllTasks(a)
      if(!retreieve){
-      res.status(400).send(errorMsg['taskCaseNotFound'])
+      res.status(400).send({"data":errorMsg['taskCaseNotFound']})
      }else{
       let ab = retreieve['tasks']
       ab.push(t)
@@ -281,19 +274,19 @@ app.post("/api/:caseId/tasks/:taskId/complete", (req, res) => {
   let c = Number(req.params.caseId)
   let t = Number(req.params.taskId)
   if(isNaN(c)&& isNaN(t)){
-   res.status(400).send(errorMsg['invalidCaseId'] + errorMsg['invalidTaskId'])
+   res.status(400).send({"data": errorMsg['invalidCaseId'] + errorMsg['invalidTaskId']})
   }else if (isNaN(c)){
-    res.status(400).send(errorMsg['invalidCaseId'])
+    res.status(400).send({"data":errorMsg['invalidCaseId']})
   } else if(isNaN(t)){
-    res.status(400).send(errorMsg['invalidTaskId'])
+    res.status(400).send({"data":errorMsg['invalidTaskId']})
   }
   let ta = getAllTasks(c)
   if(!ta){
-    res.status(400).send(errorMsg['taskCaseNotFound'])
+    res.status(400).send({"data":errorMsg['taskCaseNotFound']})
   }else{
     let sa = getTaskByTaskId(c,t)
     if(!sa){
-      res.status(400).send(errorMsg['couldNotParseTask'])
+      res.status(400).send({"data":errorMsg['couldNotParseTask']})
     }else{
       sa['completed'] = true
       res.send({

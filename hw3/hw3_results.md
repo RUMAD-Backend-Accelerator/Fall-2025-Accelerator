@@ -1,6 +1,6 @@
 # Test Results - `hw3`
 
-**Date:** 11/2/2025, 1:43:51 PM  
+**Date:** 11/2/2025, 11:04:21 PM  
 **Configuration:** `hw3`  
 **Students Tested:** 1  
 
@@ -10,7 +10,7 @@
 
 | Student | P1 | Total |
 |---------|:-------:|:-------|
-| ss4917 | ~ `7/11` | `7/11` (64%) |
+| ss4917 | ✓ `11/11` | `11/11` (100%) |
 
 ---
 
@@ -31,30 +31,5 @@
 
 ---
 
-## Detailed Failure Information
-
-### ss4917
-
-**P1:**
-
-- **Test:** `api-invalid-get-1`
-  - Error Handling for caseId NaN
-  - **Error:** `Unexpected token 'I', "Invalid pa"... is not valid JSON`
-
-- **Test:** `api-invalid-get-2`
-  - Error handling for taskId NaN
-  - **Error:** `Unexpected token 'I', "Invalid pa"... is not valid JSON`
-
-- **Test:** `api-invalid-get-3`
-  - Invalid priority parameter
-  - **Error:** `Unexpected token 'P', "Priority i"... is not valid JSON`
-
-- **Test:** `api-post-2`
-  - Invalid caseID, return error
-  - **Error:** `Unexpected token 'C', "Could not "... is not valid JSON`
-
-
----
-
-**Test completed:** 11/2/2025, 1:43:51 PM  
+**Test completed:** 11/2/2025, 11:04:21 PM  
 **Log file:** `Fall-2025-Accelerator/hw3/hw3_results.md`
