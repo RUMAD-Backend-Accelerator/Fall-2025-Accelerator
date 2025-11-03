@@ -19,6 +19,27 @@
  * @returns {{departments:number,courses:number,sections:number}}
  */
 function getDepartmentCourseSummary(subjects) {
+  let departments = 0
+  let courses = 0
+  let sections = 0
+
+//loop through each department
+for (let i = 0; i < subjects.length; i++) {
+  const dept = subjects[i]
+  departments++
+
+  //loop through each key in department object
+  for (let key in dept) {
+    if (key.startsWith("course_")) {
+      courses++
+
+      const courseObj = dept[key]
+      sections += countSectionsForCourse(courseObj)
+    }
+  }
+}
+
+return { departments, courses, sections }
   // TODO: implement this function.
   // HINTS:
   //  - `subjects` is an array of department objects.
@@ -26,7 +47,7 @@ function getDepartmentCourseSummary(subjects) {
   //  - Count courses by finding keys named like `course_*` within each dept.
   //  - Use `countSectionsForCourse(courseObj)` to normalize section counts.
   //  - Return an object: { departments, courses, sections }.
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
 }
 
 /**
@@ -37,12 +58,22 @@ function getDepartmentCourseSummary(subjects) {
  * @returns {number}
  */
 function countSectionsForCourse(courseObj) {
+  if (!courseObj) {
+    return 0
+  }
+
+  if (Array.isArray(courseObj.sections)) {
+    return courseObj.sections.length
+  } else if (typeof courseObj.sections === "number") {
+    return courseObj.sections
+  }
+
   // TODO: implement this function.
   // HINTS:
   //  - If `courseObj.sections` is an array, return its `length`.
   //  - If `courseObj.sections` is a number, return that number.
   //  - Otherwise return 0.
-  throw new Error('Not implemented');
+  //throw new Error('Not implemented');
 }
 
 module.exports = { solve: getDepartmentCourseSummary };

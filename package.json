@@ -17,9 +17,7 @@
   },
   "homepage": "https://github.com/RUMAD-Backend-Accelerator/Fall-2025-Accelerator#readme",
   "dependencies": {
-    "axios": "^1.12.2",
     "dotenv": "^16.0.0",
-    "express": "^5.1.0",
     "open": "^9.0.0"
   }
 }
