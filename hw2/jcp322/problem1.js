@@ -36,20 +36,20 @@ const getTaskCase = (req, res) => {
   for (let i = 0; i < taskCases.length; i++) {
     const currentCase = taskCases[i];
 
-      //Check if this object's case_id matches the one from req
+      //check if this object's case_id matches the one from req
       if (currentCase.case_id === req.caseId) {
         correctTaskCase = currentCase; // store this object
-        break; // stop the loop once found  
+        break; //stop the loop once its found  
       }
   }
 
-  //return object in required format
+  //return the object in required format
   return { data: correctTaskCase };
 
   throw new Error('Not implemented');
 };
 
-// Wrapper function for shared test runner compatibility
+//wrapper function for shared test runner compatibility
 const solve = (taskCases, input) => getTaskCase(input, null);
 
 module.exports = { solve };
