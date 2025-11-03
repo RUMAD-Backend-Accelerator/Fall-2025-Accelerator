@@ -173,12 +173,34 @@ app.get("/", (req, res) => {
 
 app.get("/api/:caseId/tasks", (req, res) => {
   // TODO: Retrieve caseID parameter and validate caseId
+  const caseId = Number(req.params.caseId);
+  if (isNaN(caseId)) {
+    return res.status(400).send(errorMsg.invalidCaseId);
+  }
   // TODO: Retrieve tasks using getAllTasks
+const taskCase = getAllTasks(caseId);
+if(!taskCase){
+  return res.status(404).send(errorMsg.taskCaseNotFound);
+}
   // TODO: Handle optional filtering by priority
+  const priority = req.query.priority;
+  if (priority) {
+    if(priority !== "high" && priority !== "medium" && priority !== "low"){
+      return res.status(400).send({data: errorMsg.invalidPriority});
+    }
+const tasklist = getTasksByPriority(caseId,priority);
+    return res.send({data: tasklist});
+  }
   // TODO: Handle optional sorting by due date
-  
-  res.send({ "data": [] }) // Replace [] with actual tasks
-})
+  const sort = req.query.sort;
+  if(sort === "duedate"){
+    const tasklist = sortTasksByDueDate(caseId);
+    return res.send({data: tasklist});
+  }
+  res.send({
+    data: taskCase.tasks,
+  })
+  });
 
 //TO DO: Get individual task by caseId and taskId
 // GET /api/:caseId/tasks/:taskId
@@ -186,9 +208,22 @@ app.get("/api/:caseId/tasks", (req, res) => {
 
 app.get("/api/:caseId/tasks/:taskId", (req, res) => {
   // TODO: Retrieve parameters and validate them
+  const caseId = Number(req.params.caseId);
+  const taskId = Number(req.params.taskId);
+
+  if (isNaN(caseId)) {
+    return res.status(400).send(errorMsg.invalidCaseId);
+  }
+  if (isNaN(taskId)) {
+    return res.status(400).send(errorMsg.invalidTaskId);
+  }
   // TODO: Use getTaskByTaskId to fetch and return task
-  res.send({ "data": {} }) // Replace {} with the task
-})
+  const task = getTaskByTaskId(caseId, taskId);
+  if (!task) {
+    return res.status(404).send(errorMsg.taskCaseNotFound);
+  }
+  res.send({ data: task });
+});
 
 //TO DO: Create a new task based on task JSON sent by client.
 // POST /api/:caseId/tasks
@@ -196,19 +231,33 @@ app.get("/api/:caseId/tasks/:taskId", (req, res) => {
 
 app.post("/api/:caseId/tasks", (req, res) => {
   // TODO: Retrieve caseId parameter and validate it.
+    const caseId = Number(req.params.caseId);
+    if (isNaN(caseId)) {
+      return res.status(400).send(errorMsg.invalidCaseId);
+    }
+    const taskCase = getAllTasks(caseId);
+  if (!taskCase) {
+    return res.status(404).send(errorMsg.taskCaseNotFound);
+  }
   // TODO: Retrieve task information from req
+  const newTask = req.body;
+  if(!newTask){
+    return res.status(400).send({data: errorMsg.couldNotParseTask});
+  }
     // You can assume the id is given to you and all task properties are valid already
 
   // TODO: Add new task to tasks
   // TODO: Return result with caseId and added task
+  taskCase.tasks.push(newTask);
 
-  res.send({
+  es.send({
     data: {
-      caseId: -1, //replace -1 with caseId
-      task: {}, // replace {} with task that was just added
+      caseId: caseId,
+      task: newTask,
     },
-  })
-})
+  });
+});
+
 
 // TODO: Mark given task as complete
 // POST /api/:caseId/tasks/:taskId/complete
@@ -216,17 +265,30 @@ app.post("/api/:caseId/tasks", (req, res) => {
 app.post("/api/:caseId/tasks/:taskId/complete", (req, res) => {
   
   // TODO: Retrieve parameters and validate them.
-  // TODO: Use getTaskByTaskId to locate the task
-  // TODO: Mark the task as completed = true
-  // TODO: Return updated task and caseId
+ const caseId = Number(req.params.caseId);
+  const taskId = Number(req.params.taskId);
 
+  if (isNaN(caseId)) {
+    return res.status(400).send(errorMsg.invalidCaseId);
+  }
+  if (isNaN(taskId)) {
+    return res.status(400).send(errorMsg.invalidTaskId);
+  }
+  // TODO: Use getTaskByTaskId to locate the task
+  const task = getTaskByTaskId(caseId, taskId);
+  if (!task) {
+    return res.status(404).send(errorMsg.taskCaseNotFound);
+  }
+  // TODO: Mark the task as completed = true
+  task.completed = true;
+  // TODO: Return updated task and caseId
   res.send({
     data: {
-      caseId: -1,
-      task: {},
+      caseId: caseId,
+      task: task,
     },
-  })
-})
+  });
+});
 
 //start up express app
 if (require.main === module) {
