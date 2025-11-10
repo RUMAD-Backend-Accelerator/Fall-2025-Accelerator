@@ -1,5 +1,5 @@
 -- Supabase Books Table Setup
--- Run this SQL in your Supabase SQL Editor to create the books table
+-- Run this SQL in Supabase SQL Editor to create the books table
 
 -- Create books table
 CREATE TABLE IF NOT EXISTS books (
