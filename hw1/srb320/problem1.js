@@ -31,7 +31,32 @@ function getTopTenCoursesByCredits(subjects) {
   //  - Sections may be an array or a number; normalize to a count.
   //  - Build an array of { course, credits, sections } and sort with
   //    `sortCoursesByCredits(courses)` before returning the top 10.
-  throw new Error('Not implemented');
+  extracted = []
+  for(i = 0; i < subjects.length; i++)
+  {
+    const keys = Object.keys(subjects[i]);
+    for(j = 0; j < keys.length; j++)
+    {
+      if(keys[j].startsWith("course_"))
+      {
+        let s = subjects[i][keys[j]].sections;
+        if(Array.isArray(s)) s = s.length;
+        extracted.push({
+          sections: s,
+          title: subjects[i][keys[j]].title,
+          credits: subjects[i][keys[j]].credits,
+        })
+      }
+    }
+  }
+  extracted = sortCoursesByCredits(extracted);
+  out = [];
+  for(i = 0; i < 10; i++)
+  {
+    if(i >= extracted.length) return out;
+    out.push(extracted[i]);
+  }
+  return out;
 }
 
 /**
