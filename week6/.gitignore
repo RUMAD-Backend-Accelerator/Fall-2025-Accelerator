@@ -1,0 +1,16 @@
+# Ignore node modules
+node_modules/
+
+# Ignore environment variables
+.env
+
+# Ignore logs
+*.log
+npm-debug.log*
+
+# Ignore OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
