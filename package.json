@@ -1,10 +1,12 @@
 {
   "name": "fall-2025-accelerator",
   "version": "1.0.0",
-  "description": "Each mentee will work on their own branch — this keeps your work organized and allows mentors to review your code privately. Below is a guide on how to make your own private branch and upload your submissions.",
-  "main": "index.js",
+  "description": "RUMAD Fall 2025 Backend Accelerator public repository accessible to students. Homework and meeting code will be posted.",
+  "main": "test-problems.js",
   "scripts": {
-    "check-hw": "node test-problems.js"
+    "test": "node test-problems.js",
+    "check-hw": "node test-problems.js",
+    "view-docs": "node view_docs.js"
   },
   "repository": {
     "type": "git",
@@ -16,10 +18,14 @@
     "url": "https://github.com/RUMAD-Backend-Accelerator/Fall-2025-Accelerator/issues"
   },
   "homepage": "https://github.com/RUMAD-Backend-Accelerator/Fall-2025-Accelerator#readme",
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "axios": "^1.12.2",
     "dotenv": "^16.6.1",
     "express": "^5.1.0",
+    "marked": "^12.0.0",
     "open": "^9.0.0"
   }
 }
