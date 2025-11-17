@@ -180,6 +180,7 @@ app.get("/api/:caseId/tasks", (req, res) => {
     return res.status(404).send({data : errorMsg.taskCaseNotFound});
   }
   let tasks = caseData.tasks;
+
   // TODO: Handle optional filtering by priority
   if (req.query.priority) {
     const priority = req.query.priority.toLowerCase();
@@ -189,11 +190,13 @@ app.get("/api/:caseId/tasks", (req, res) => {
     tasks = getTasksByPriority(caseId, priority);
     return res.send({data: tasks})
   }
+
   // TODO: Handle optional sorting by due date
   if (req.query.sort && req.query.sort.toLowerCase() === "duedate") {
     let tasksbyDueDate = sortTasksByDueDate(caseId);
     return res.send({data: tasksbyDueDate})
   }
+  
   res.send({
     data: {
       case_id: caseId, 

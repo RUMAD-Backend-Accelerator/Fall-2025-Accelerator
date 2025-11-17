@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/RUMAD-Backend-Accelerator/Fall-2025-Accelerator#readme",
   "dependencies": {
-    "dotenv": "^16.0.0",
+    "@supabase/supabase-js": "^2.79.0",
+    "dotenv": "^16.6.1",
     "express": "^5.1.0",
     "open": "^9.0.0"
   }
