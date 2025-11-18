@@ -72,11 +72,12 @@ async function run(options = {}) {
 
   // The config directory contains test-cases.json and data/
   const configDir = homeworkDir;
-  const configPath = path.join(__dirname, configDir);
+  const repoRoot = path.resolve(__dirname, '..');
+  const configPath = path.join(repoRoot, configDir);
   
   // The test directory contains student code to test
   const testDir = submissionsDir || homeworkDir;
-  const testPath = path.join(__dirname, testDir);
+  const testPath = path.join(repoRoot, testDir);
   
   // Check if config directory exists
   if (!fs.existsSync(configPath)) {
