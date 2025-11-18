@@ -22,13 +22,11 @@ async function runDemo() {
     // Hard clear - prevents scrolling back
     process.stdout.write('\x1Bc')
     console.log('\nStarting Supabase Books Demo...\n')
-
-    // Uncomment what you want to run:
     
     // READ examples
     // await showAllBooks()
     // await showOneBook()
-    await showFantasyBooks()
+    // await showFantasyBooks()
     // await searchForBooks()
     // await showTopBooks()
     
@@ -41,7 +39,7 @@ async function runDemo() {
     // await changeRating()
     
     // DELETE example
-    // await removeBook()
+    await removeBook()
     
     // Summary
     // await showSummary()

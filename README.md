@@ -40,7 +40,7 @@ npm test
   - `test-cases.json` - Test cases for the homework
   - `boilerplate/` - Starter code
   - `solutions/` - Example solutions (when available)
-- `test-problems.js` - Test runner script
+- `test_problems.js` - Test runner script
 - `view_docs.js` - Documentation viewer script
 
 ## 💡 Tips
