@@ -28,7 +28,25 @@ const taskCases = require('../data/tasks-cases.json'); // imports taskCases arra
 /* Write your function here */
 const getAllTasks = (req, res) => {
   // TODO: implement this function
-  throw new Error('Not implemented');
+  // extracts correct caseId from req object
+  const caseId = req.caseId;
+
+  // creates variable for the desired task case
+  let correctTaskCase = null;
+
+  // iterates through taskCases array
+  for (const taskCase of taskCases) {
+    // if the current task case has the desired case ID,
+    // sets current task case as the correct one
+    if (caseId === taskCase.case_id) {
+        correctTaskCase = taskCase;
+        break;
+    }
+  }
+
+  // returns the data in json format
+  // would be replaced with `res.send({ data: correctTaskCase })` in real scenario
+  return { data: correctTaskCase };
 };
 
 // Wrapper function for shared test runner compatibility
