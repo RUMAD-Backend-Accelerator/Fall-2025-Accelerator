@@ -25,10 +25,5 @@ jobs:
         run: |
           echo "Checking homework 2..."
           node test-problems.js hw2
-          
-      - name: Upload report
-        uses: actions/upload-artifact@v4
-        with:
-          name: grade-report
-          path: "Fall-2025-Accelerator/hw2/hw2_results.md"
-      - run: echo "Report Uploaded!"
+        
+      - run: echo "Grading Complete!"
