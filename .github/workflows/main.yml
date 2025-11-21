@@ -10,11 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Code checked out!"
       
-      - name: Set up Python
+      - name: Set up Node
         uses: actions/setup-node@v4
-      - run: echo "Node set up!"
       
       - name: Install dependencies
         run: |
@@ -25,5 +23,6 @@ jobs:
         run: |
           echo "Checking homework 2..."
           node test-problems.js hw2
-        
-      - run: echo "Grading Complete!"
+
+      - name: Grading complete
+        run: echo "Grading Complete!"
