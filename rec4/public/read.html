@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read Operations - Books Demo</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <a href="/" class="back-link">← Back to Home</a>
+            <h1>🔍 Read Operations</h1>
+            <p>Browse, search, and filter books from the database</p>
+        </div>
+
+        <div class="content-box">
+            <h2>Available Operations</h2>
+            <div class="button-grid">
+                <button onclick="showAllBooks()">Show All Books</button>
+                <button onclick="showOneBook()">Get Book by ID</button>
+                <button onclick="showFantasyBooks()">Show Fantasy Books</button>
+                <button onclick="searchForBooks()">Search Books</button>
+                <button onclick="showTopBooks()">Show Top Rated Books</button>
+            </div>
+        </div>
+
+        <div id="input-section" class="content-box" style="display: none;">
+            <!-- Dynamic input forms will appear here -->
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <script src="/js/read.js"></script>
+</body>
+</html>
