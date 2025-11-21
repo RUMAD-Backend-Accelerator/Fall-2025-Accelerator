@@ -11,20 +11,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: echo "Code checked out!"
+      
       - name: Set up Python
         uses: actions/setup-node@v4
       - run: echo "Node set up!"
+      
       - name: Install dependencies
         run: |
           echo "Installing dependencies..."
           npm install
+          
       - name: Run grading script
         run: |
           echo "Checking homework..."
-          node test-problems.js hw2
+          npm run check-hw hw1
+          
       - name: Upload report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: grade-report
-          path: report.txt
+          path: "Fall-2025-Accelerator/hw2/hw2_results.md"
+          
       - run: echo "Report Uploaded!"
