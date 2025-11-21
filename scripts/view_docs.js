@@ -17,12 +17,16 @@ const { URL } = require('url');
 
 // Import shared utilities - use relative path if in Fall-2025-Backend, otherwise assume scripts/helpers
 let sharedModule;
+let ROOT;
 try {
-  // Try loading from scripts/helpers first (for when running from mentor repo)
+  // Try loading from helpers/paths first (for when running from mentor repo scripts/)
+  const { ROOT_DIR } = require('./helpers/paths');
+  ROOT = ROOT_DIR;
   sharedModule = require('./helpers/doc_viewer_shared');
 } catch (err) {
   // If that fails, try loading from current directory (for when copied to student repo)
   try {
+    ROOT = process.cwd();
     sharedModule = require('./doc_viewer_shared');
   } catch (err2) {
     console.error('❌ Error: Could not find doc_viewer_shared module.');
@@ -44,7 +48,6 @@ const {
 } = sharedModule;
 
 const PORT = process.argv[2] || 3001;
-const ROOT = process.cwd();
 
 // Create HTTP server
 const server = http.createServer((req, res) => {
