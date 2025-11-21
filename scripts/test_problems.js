@@ -1,10 +1,10 @@
 const fs = require('fs');
 const path = require('path');
+const { ROOT_DIR } = require('./helpers/paths');
 
 // Helper: Convert absolute path to relative path from repo root
 function toRelativePath(absolutePath) {
-  const repoRoot = path.resolve(__dirname, '..');
-  return path.relative(repoRoot, absolutePath);
+  return path.relative(ROOT_DIR, absolutePath);
 }
 
 // Simple helper to attempt to require a module and return null on failure
@@ -72,7 +72,8 @@ async function run(options = {}) {
 
   // The config directory contains test-cases.json and data/
   const configDir = homeworkDir;
-  const repoRoot = path.resolve(__dirname, '..');
+  // Allow repoRoot to be passed in options (for programmatic calls), otherwise use __dirname
+  const repoRoot = options.repoRoot || path.resolve(__dirname, '..');
   const configPath = path.join(repoRoot, configDir);
   
   // The test directory contains student code to test
