@@ -25,4 +25,4 @@ jobs:
           node test-problems.js hw2
 
       - name: Grading complete
-      - run: echo "Grading Complete!"
+        run: echo "Grading Complete!"
