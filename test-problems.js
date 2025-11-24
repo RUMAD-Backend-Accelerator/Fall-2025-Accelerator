@@ -31,9 +31,27 @@ async function startServer(impl, port = 3000) {
 }
 
 let logStream = null;
+let silentMode = false; // Suppress console output when true
+let originalConsoleLog = null;
+let originalConsoleError = null;
+let originalConsoleWarn = null;
 
 async function run(options = {}) {
-  console.clear();
+  // Silent mode: suppress all console output (used during concurrent operations)
+  silentMode = options.silent || false;
+  
+  if (silentMode) {
+    // Suppress all console output in silent mode
+    originalConsoleLog = console.log;
+    originalConsoleError = console.error;
+    originalConsoleWarn = console.warn;
+    
+    console.log = () => {};
+    console.error = () => {};
+    console.warn = () => {};
+  } else {
+    console.clear();
+  }
   
   // Get directories from command line or options
   // Usage 1: node test-problems.js hw1 (test hw1 folder with test-cases.json in hw1)
@@ -309,8 +327,17 @@ async function run(options = {}) {
             } 
 
             // await result and convert to json
-            result = await fetch(url, options)
-            result = await result.json()
+            const response = await fetch(url, options);
+            
+            // Check if response is JSON before parsing
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+              result = await response.json();
+            } else {
+              // Handle non-JSON responses (e.g., plain text 404 errors)
+              const text = await response.text();
+              throw new Error(`Expected JSON response but got: ${text}`);
+            }
 
           } else { // Build arguments for the function call
             const args = [];
@@ -587,7 +614,14 @@ async function run(options = {}) {
   
   if (logStream) {
     logStream.end();
-    console.log(`\nLog file created: ${logPath}`);
+    console.log(`\nLog file created: ${toRelativePath(logPath)}`);
+  }
+  
+  // Restore console functions if they were suppressed
+  if (silentMode && originalConsoleLog) {
+    console.log = originalConsoleLog;
+    console.error = originalConsoleError;
+    console.warn = originalConsoleWarn;
   }
   
   return resultsObject;
