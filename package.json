@@ -1,31 +1,30 @@
 {
-  "name": "rumad-mentor-access",
-  "version": "0.1.0",
-  "private": true,
+  "name": "rumad-fall-2025-accelerator",
+  "version": "1.0.0",
+  "description": "RUMAD Fall 2025 Backend Accelerator public repository accessible to students. Homework and meeting code will be posted.",
+  "main": "scripts/test_problems.js",
   "scripts": {
-    "setup": "bash scripts/initial_setup.sh",
-    "sync-resources": "node scripts/sync_drive_resources.js",
-    "get-refresh-token": "node scripts/helpers/get_refresh_token.js",
-    "publish-hw": "bash scripts/publish_homework.sh",
-    "publish-hw-solutions": "bash scripts/publish_homework.sh --include-solutions",
-    "unpublish-hw": "bash scripts/publish_homework.sh --unpublish",
-    "unpublish-hw-solutions": "bash scripts/publish_homework.sh --unpublish-solutions",
-    "create-hw": "bash scripts/create_homework.sh",
-    "retrieve-submissions": "node scripts/retrieve_submissions.js",
-    "check-hw": "cd Fall-2025-Backend && node test_problems.js",
-    "retrieve-check-hw": "node scripts/retrieve_check_hw.js",
-    "merge-pr": "bash scripts/helpers/git_commit_and_pr.sh merge-pr",
-    "sync-repo": "bash scripts/sync_public_repo.sh",
-    "serve-docs": "node scripts/serve_docs.js"
+    "test": "node scripts/test_problems.js",
+    "check-hw": "node scripts/test_problems.js",
+    "view-docs": "node scripts/view_docs.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RUMAD-Backend-Accelerator/Fall-2025-Accelerator.git"
+  },
+  "author": "Ayush Mishra, Liam Ta, Hiya Mavani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RUMAD-Backend-Accelerator/Fall-2025-Accelerator/issues"
+  },
+  "homepage": "https://github.com/RUMAD-Backend-Accelerator/Fall-2025-Accelerator#readme",
   "engines": {
     "node": ">=18"
   },
   "dependencies": {
-    "cli-progress": "^3.12.0",
+    "axios": "^1.12.2",
     "dotenv": "^16.0.0",
     "express": "^5.1.0",
-    "googleapis": "^161.0.0",
     "marked": "^12.0.0",
     "open": "^9.0.0"
   }
