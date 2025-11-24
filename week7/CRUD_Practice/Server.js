@@ -53,22 +53,33 @@ app.get("/api/books", async (req, res) => {
 
     //if ?genre is specified in path then we filter by genre
     // TO DO: get the books from the books table in our database and filter by genre
+
     
-    if(genre) {
-        
-        //CODE GOES HERE
-        return res.send(data)
-    }
 
     //TO DO: by default get all books from the database
-    //NOTE: select queries don't guarantee any order when retrieved
-    // You will notice your books get jumbled when you post a comment and the page refreshes the books
-    // Think about what filter/modifier you could put on your select query here to prevent this from happening
+    try {
+        if(genre) {
+            const { data, error } = await supabase
+                .from('books')
+                .select('*')
+                .eq('genre', genre)
+                .order('id', { ascending: true });
+            
+            if (error) return res.json({ errorMessage: error.message });
+            return res.send(data);        
+        }
 
-    // CODE GOES HERE
-    
-    //send filtered or non-filtered books
-    res.json(data)
+        const { data, error } = await supabase
+            .from('books')
+            .select('*')
+            .order('id', { ascending: true });
+
+            if (error) return res.json({ errorMessage: error.message });
+            
+            return res.send(data);
+    } catch (error) {
+        res.json({ errorMessage: error.message });
+    }
 })
 
 //GET book by ID using parameter
@@ -85,10 +96,16 @@ app.get("/api/books/:id", async (req, res) => {
     }
 
     //TO DO: find the correct book based on if its id (book.id) matches id
-    // CODE GOES HERE
-
-    // sends book data
-    res.send(data)
+    if (id){
+        const { data, error } = await supabase
+            .from('books')
+            .select('*')
+            .eq('id', id)
+            .single();
+            
+            if (error) return res.json({ errorMessage: error.message });
+            return res.send(data); 
+    }
 })
 
 //POST comment on book
@@ -97,7 +114,7 @@ app.get("/api/books/:id", async (req, res) => {
 
 app.post("/api/books/:id/comments", async (req, res) => {
     //get comment json from req.body
-    const comment = req.body
+    const comment = req.body.comment
 
     //get bookId from path parameters
     const bookId = Number(req.params.id)
@@ -111,6 +128,41 @@ app.post("/api/books/:id/comments", async (req, res) => {
         return res.status(400).send("Invalid parameter.")
     }
 
+    try {
+        // 1. Get book
+        const { data: book, error: getError } = await supabase
+            .from('books')
+            .select('*')
+            .eq('id', bookId)
+            .single();
+
+        if (getError || !book) {
+            return res.status(404).json({ errorMessage: "Book not found" });
+        }
+
+        // 2. Add new comment
+        // If client sends { "text": "hello" }
+        const newComment = comment;
+        const updatedComments = [...book.comments, newComment];
+
+        // 3. Update in database
+        const { data: updatedData, error: updateError } = await supabase
+            .from('books')
+            .update({ comments: updatedComments })
+            .eq('id', bookId)
+            .select()
+            .single();
+
+        if (updateError) {
+            return res.status(500).json({ errorMessage: updateError.message });
+        }
+
+        return res.send(updatedData);
+
+    } catch (error) {
+        return res.status(500).json({ errorMessage: error.message });
+    }
+});
     // Supabase doesn't natively have "push" to a column array
     // Using Supabase rpc, we can directly define a function in SQL and call it
     // rpc = remote procedure call
@@ -128,8 +180,8 @@ app.post("/api/books/:id/comments", async (req, res) => {
     // CODE GOES HERE
 
     //send updated book --> acts as a confirmation
-    res.send({data: updatedData})
-})
+    
+
 
 
 app.listen(port, () => {
