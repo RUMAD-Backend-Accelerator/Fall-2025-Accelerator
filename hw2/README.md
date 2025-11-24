@@ -13,22 +13,22 @@ Data: `task-cases.json` is provided in this folder. It is an array of task case 
 
 ## Code structure you will use
 
-- `boilerplate/` — student code. **Rename this directory to your NetID (e.g., `am3606`).**  <br> **You may also have to replace all instances of `boilerplate` in the `test-problems.js` file to your NetID** <br> Implement solutions only inside files in this directory. ***Choose AT LEAST ONE out of the three problems to implement!*** You may implement more than one problem if you'd like (which I'd certainly like).
+- `boilerplate/` — student code. **Rename this directory to your NetID (e.g., `am3606`).**  <br> **You may also have to replace all instances of `boilerplate` in the `test_problems.js` file to your NetID** <br> Implement solutions only inside files in this directory. ***Choose AT LEAST ONE out of the three problems to implement!*** You may implement more than one problem if you'd like (which I'd certainly like).
   - `boilerplate/loadSubjects.js` — helper to load the JSON file (`data/subjects.json`).
   - `boilerplate/problem1.js` — implement Problem 1 (Easy).
   - `boilerplate/problem2.js` — implement Problem 2 (Medium).
   - `boilerplate/problem3.js` — implement Problem 3 (Hard).
 
-- `test-problems.js` — test runner you can run locally to exercise your functions.
+- `test_problems.js` — test runner you can run locally to exercise your functions.
 
-- `test-cases.json` - test cases for each problem, accessed by `test-problems.js`. You may add your own test cases if you'd like.
+- `test-cases.json` - test cases for each problem, accessed by `test_problems.js`. You may add your own test cases if you'd like.
 
 ## How to run locally
 
 1. From this folder, run the test runner:
 
 ```bash
-node test-problems.js
+node test_problems.js
 ```
 
 2. Edit the driver functions inside `boilerplate/*.js`. Re-run the test runner to see your results.
@@ -39,7 +39,7 @@ node test-problems.js
 of your renamed  `boilerplate/` folder (e.g. `PREFFERED_FOLDER="am3606"`). 
     - This ensures that your submission files are unique.
     - Keep the filenames and function signatures unchanged.
-    - Enables you to run `test-problems.js` to check your solution.
+    - Enables you to run `test_problems.js` to check your solution.
 2. Create your own branch on the `Fall-2025-Accelerator` public repository. **Title it with your NetID (e.g., `am3606`).**
     - This is the branch you will be working out of throughout the program, and this is how us mentors will be able to track your code.
     - If you already did this for homework 1, you should keep working on that branch.
