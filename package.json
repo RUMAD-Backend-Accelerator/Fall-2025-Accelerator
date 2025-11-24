@@ -2,11 +2,11 @@
   "name": "fall-2025-accelerator",
   "version": "1.0.0",
   "description": "RUMAD Fall 2025 Backend Accelerator public repository accessible to students. Homework and meeting code will be posted.",
-  "main": "test-problems.js",
+  "main": "scripts/test_problems.js",
   "scripts": {
-    "test": "node test-problems.js",
-    "check-hw": "node test-problems.js",
-    "view-docs": "node view_docs.js"
+    "test": "node scripts/test_problems.js",
+    "check-hw": "node scripts/test_problems.js",
+    "view-docs": "node scripts/view_docs.js"
   },
   "repository": {
     "type": "git",

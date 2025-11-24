@@ -1,5 +1,5 @@
 /**
- * Problem 1 (Easy): Get a task case object from an array
+ * Solution to Problem 1 (Easy): Get a task case object from an array
  *
  * Objective:
  * Retrieve the desired task case object from 'tasks-cases.json'
@@ -11,32 +11,11 @@
  *    1. Use `req.caseId` to select the desired task case object from `taskCases`.
  *    2. Return an object in the format: `{ data: correctTaskCase }`, where `correctTaskCase`
  *       is an object
- *
- * Hints:
- * - `req` is an object in the format `{ "caseId": number }`, where
- *   number is the `case_id` of the correct task case object from `taskCases`
- * - `taskCases` is an array of task lists. Each task list is itself an array of task objects.
- * - Example of function layout to use: `const getTaskCase = (req, res) => { ... }`
- * - Although you will implement the `res` parameter in the function signature,
- *   you do NOT need to use it in the function body. In a real Express app, you
- *   would use `res.send({ data: tasks })`, but here you just return the object.
- * - Example return value: `{ data: {"case_id": 123, "tasks": [ ... ]} }`
  */
 
 const taskCases = require('../data/tasks-cases.json'); // imports taskCases array
-/* Write your function here */
+
 const getAllTasks = (req, res) => {
-  // TODO: implement this function
-<<<<<<< HEAD:hw2/ss4917/problem1.js
-    let a = req.caseId;
-    for(let i =0; i<taskCases.length;i++){
-      if(taskCases[i]["case_id"]== a){
-         return {data:{"case_id": a, "tasks": taskCases[i]["tasks"]}};
-      }
-    }
-    return {data:{"case_id": 0, "tasks": null}};
-     throw new Error('Not implemented');
-=======
   // extracts correct caseId from req object
   const caseId = req.caseId;
 
@@ -56,9 +35,9 @@ const getAllTasks = (req, res) => {
   // returns the data in json format
   // would be replaced with `res.send({ data: correctTaskCase })` in real scenario
   return { data: correctTaskCase };
->>>>>>> 3d42478c7f218cb936b0ec1552f800e4ec1d0f07:hw2/boilerplate/problem1.js
 };
 
 // Wrapper function for shared test runner compatibility
 const solve = (taskCases, input) => getAllTasks(input, null);
+
 module.exports = { solve };

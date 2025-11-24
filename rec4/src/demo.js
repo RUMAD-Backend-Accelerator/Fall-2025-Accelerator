@@ -1,5 +1,5 @@
 /**
- * Supabase Books CRUD Demo - Driver File
+ * PostgreSQL Books CRUD Demo - Driver File
  * 
  * Uncomment the functions below to run them.
  */
@@ -18,10 +18,12 @@ const {
     showSummary
 } = require('./demoFunctions')
 
+const pool = require('./dbClient')
+
 async function runDemo() {
     // Hard clear - prevents scrolling back
     process.stdout.write('\x1Bc')
-    console.log('\nStarting Supabase Books Demo...\n')
+    console.log('\nStarting PostgreSQL Books Demo...\n')
     
     // READ examples
     // await showAllBooks()
@@ -52,9 +54,11 @@ async function runDemo() {
 runDemo()
     .then(() => {
         console.log('Demo finished')
+        pool.end()
         process.exit(0)
     })
     .catch(error => {
         console.error('Demo failed:', error)
+        pool.end()
         process.exit(1)
     })
