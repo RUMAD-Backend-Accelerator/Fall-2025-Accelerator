@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Operations - Books Demo</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <a href="/" class="back-link">← Back to Home</a>
+            <h1>🗑️ Delete Operations</h1>
+            <p>Remove books from the database</p>
+        </div>
+
+        <div class="content-box">
+            <div class="alert alert-error">
+                <strong>⚠️ Warning:</strong> Deleting a book is permanent and cannot be undone!
+            </div>
+
+            <h2>Delete Book</h2>
+            <form id="delete-book-form">
+                <div class="form-group">
+                    <label for="deleteBookId">Book ID *</label>
+                    <input type="number" id="deleteBookId" name="bookId" min="1" required>
+                    <button type="button" onclick="previewBook()" style="margin-top: 0.5rem;">Preview Book</button>
+                </div>
+                <div id="book-preview"></div>
+                <button type="submit" style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);">Delete Book</button>
+            </form>
+        </div>
+
+        <div class="content-box">
+            <h2>Test Delete Operation</h2>
+            <p>This will create a test book and then delete it to demonstrate the delete functionality safely.</p>
+            <button onclick="testDelete()">Run Test Delete</button>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <script src="/js/delete.js"></script>
+</body>
+</html>
