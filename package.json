@@ -22,6 +22,7 @@
     "node": ">=18"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.84.0",
     "axios": "^1.12.2",
     "dotenv": "^16.0.0",
     "express": "^5.1.0",

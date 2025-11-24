@@ -26,6 +26,7 @@ function getDepartmentCourseSummary(subjects) {
   //  - Count courses by finding keys named like `course_*` within each dept.
   //  - Use `countSectionsForCourse(courseObj)` to normalize section counts.
   //  - Return an object: { departments, courses, sections }.
+  
   throw new Error('Not implemented');
 }
 
@@ -37,6 +38,7 @@ function getDepartmentCourseSummary(subjects) {
  * @returns {number}
  */
 function countSectionsForCourse(courseObj) {
+
   // TODO: implement this function.
   // HINTS:
   //  - If `courseObj.sections` is an array, return its `length`.
