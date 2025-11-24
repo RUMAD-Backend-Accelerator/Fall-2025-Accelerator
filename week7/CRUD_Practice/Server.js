@@ -25,7 +25,8 @@
 
 const express = require('express')
 const path = require('path');
-const { supabase } = require('./SupabaseClient')
+const { supabase } = require('./SupabaseClient');
+//const { addErrorMessage } = require('openai/src/_vendor/zod-to-json-schema/errorMessages.js');
 
 const app = express()
 const port = 3000
@@ -47,17 +48,40 @@ app.get("/", (req, res) => {
 app.get("/api/books", async (req, res) => {
     //get genre from query string
     const genre = req.query.genre
-
+    console.log(genre)
     //initialize books (we send all books if no query parameter is passed in)
     let books = [];
-
     //if ?genre is specified in path then we filter by genre
     // TO DO: get the books from the books table in our database and filter by genre
-    
     if(genre) {
-        
+        try{
+            const{data,error} = await supabase
+            .from('comments')
+            .select('*')
+            //.eq('genre',genre)
+            if(error){
+                return res.json({errorMessage:"hasdello"})
+            }
+            console.log
+            res.json({"genre": data})
+            
+        }catch(error){
+            res.json({errorMessage:"hello"})
+        }
         //CODE GOES HERE
         return res.send(data)
+    }else{
+        try{
+            const{data,error} = await supabase
+            .from('books')
+            .select('*')
+            if(error){
+                return res.json({errorMessage:"hello"})
+            }
+            res.json({'this':data})
+        }catch(error){
+            res.json({errorMessage:"hello"})
+        }
     }
 
     //TO DO: by default get all books from the database
@@ -68,7 +92,7 @@ app.get("/api/books", async (req, res) => {
     // CODE GOES HERE
     
     //send filtered or non-filtered books
-    res.json(data)
+    //res.json(data)
 })
 
 //GET book by ID using parameter
@@ -83,12 +107,22 @@ app.get("/api/books/:id", async (req, res) => {
         //CORRECTION HERE changed "sendStatus" to "status"!!!
         return res.status(400).send("Invalid parameter")
     }
-
     //TO DO: find the correct book based on if its id (book.id) matches id
     // CODE GOES HERE
-
+    try{
+        const {data,error} = await supabase
+        .from('books')
+        .select('*')
+        .eq('id', id)
+        .single()
+        if(error){
+            return res.json({errorMessage: "did not work"})
+        }
+        res.json({book:data})
+      }catch(error){
+        res.json({errorMessage:"did not work"})
+      }    
     // sends book data
-    res.send(data)
 })
 
 //POST comment on book
@@ -97,7 +131,7 @@ app.get("/api/books/:id", async (req, res) => {
 
 app.post("/api/books/:id/comments", async (req, res) => {
     //get comment json from req.body
-    const comment = req.body
+    const comment = req.body.comment
 
     //get bookId from path parameters
     const bookId = Number(req.params.id)
@@ -106,6 +140,7 @@ app.post("/api/books/:id/comments", async (req, res) => {
     if(!comment) {
         return res.status(400).send("Comment required")
     }
+    //console.log(comment)
     //check if bookId is invalid --> send error 400
     if(isNaN(bookId)) {
         return res.status(400).send("Invalid parameter.")
@@ -120,15 +155,36 @@ app.post("/api/books/:id/comments", async (req, res) => {
 
     // TO DO: Retrieve the book by id from the database
     // CODE GOES HERE
+        const {data: book} = await supabase
+        .from('books')
+        .select('comments')
+        .eq('id', bookId)
+        .single()
 
+        const updated = [...(book.comments|| []), comment]
+
+        console.log(updated)
+
+        const {data,error} = await supabase
+        .from('books')
+        .update({comments:updated})
+        .eq('id',bookId)
+        .select()
+        .single()
+        if(error){
+            return res.json({errorMessage: "Did not work"})
+        }
+
+        res.json({success:true,data})
     // TO DO: add the new comment to the retrieved book's comments
     // CODE GOES HERE
+
 
     // TO DO: Update the book in the database with the new comments
     // CODE GOES HERE
 
     //send updated book --> acts as a confirmation
-    res.send({data: updatedData})
+    //res.send({data: updatedData})
 })
 
 
