@@ -55,8 +55,14 @@ app.get("/api/books", async (req, res) => {
     // TO DO: get the books from the books table in our database and filter by genre
     
     if(genre) {
-        
-        //CODE GOES HERE
+        const { data, error } = await supabase
+                                        .from('books')
+                                        .select('*')
+                                        .eq('genre', genre)
+        if(error) {
+            console.error('Error getting book:', error.message)
+            return { success: false, error: error.message }
+        }
         return res.send(data)
     }
 
@@ -66,7 +72,13 @@ app.get("/api/books", async (req, res) => {
     // Think about what filter/modifier you could put on your select query here to prevent this from happening
 
     // CODE GOES HERE
-    
+    const { data, error } = await supabase
+                                    .from('books')
+                                    .select('*')
+    if(error) {
+        console.error('Error getting book:', error.message)
+        return { success: false, error: error.message }
+    }
     //send filtered or non-filtered books
     res.json(data)
 })
@@ -85,8 +97,16 @@ app.get("/api/books/:id", async (req, res) => {
     }
 
     //TO DO: find the correct book based on if its id (book.id) matches id
-    // CODE GOES HERE
+    const { data, error } = await supabase
+                                    .from('books')
+                                    .select('*')
+                                    .eq('id', id)
+                                    .single();
 
+    if(error) {
+        console.error('Error getting book:', error.message)
+        return { success: false, error: error.message }
+    }
     // sends book data
     res.send(data)
 })
@@ -100,15 +120,17 @@ app.post("/api/books/:id/comments", async (req, res) => {
     const comment = req.body
 
     //get bookId from path parameters
-    const bookId = Number(req.params.id)
 
+    let id = Number(req.params.id)
+
+    //check if id is invalid --> send error 400
+    if(isNaN(id)) {
+        //CORRECTION HERE changed "sendStatus" to "status"!!!
+        return res.status(400).send("Invalid parameter")
+    }
     //check if comment is null --> send error 400
     if(!comment) {
         return res.status(400).send("Comment required")
-    }
-    //check if bookId is invalid --> send error 400
-    if(isNaN(bookId)) {
-        return res.status(400).send("Invalid parameter.")
     }
 
     // Supabase doesn't natively have "push" to a column array
@@ -121,14 +143,41 @@ app.post("/api/books/:id/comments", async (req, res) => {
     // TO DO: Retrieve the book by id from the database
     // CODE GOES HERE
 
+    //TO DO: find the correct book based on if its id (book.id) matches id
+    const { data, error } = await supabase
+                                    .from('books')
+                                    .select('*')
+                                    .eq('id', id)
+                                    .single();
+
+    if(error) {
+        console.error('Error getting book:', error.message)
+        return { success: false, error: error.message }
+    }
     // TO DO: add the new comment to the retrieved book's comments
     // CODE GOES HERE
+
+    const prevComments = data.comments;
+    prevComments.push(comment["comment"]);
 
     // TO DO: Update the book in the database with the new comments
     // CODE GOES HERE
 
+    const { data2, error2 } = await supabase
+                                        .from('books')
+                                        .update({ comments: prevComments })
+                                        .eq('id', id)
+                                        .select()
+                                        .single();
+    
+
+    if(error2) {
+        console.error('Error getting book:', error.message)
+        return { success: false, error: error.message }
+    }
+
     //send updated book --> acts as a confirmation
-    res.send({data: updatedData})
+    res.send({data: data2})
 })
 
 
