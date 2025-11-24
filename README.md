@@ -1,44 +1,58 @@
-# RUMAD-Fall-2025-Accelerator
+# RUMAD Backend Accelerator
 
-## This repository is where you’ll complete and submit the code for your homework assignments.
-Each mentee will work on their own branch — this keeps your work organized and allows mentors to review your code privately.
-Below is a guide on how to make your own private branch and upload your submissions.
+Welcome to the RUMAD Backend Accelerator program! This repository contains all homework assignments, test cases, and documentation for the course.
 
-## 1. Clone the repository
+## 📚 Viewing Documentation
 
-```
-git clone https://github.com/RUMAD-Backend-Accelerator/Fall-2025-Accelerator.git
-cd <repo-name>
-```
-## 2. Create a new branch for your work
-Use your name so we can identify you easily:
-```
-git checkout -b yourname/homework
-```
-Example:
-```
-git checkout -b Hiya/homework
-```
+We've included a documentation viewer to help you browse homework assignments and related files easily.
 
-# 3. Work locally on your assignment
-* Edit or add files as instructed.
-* You can commit as often as you like:
-```
-git add .
-git commit -m "Finished problem 1"
-```
-## 4. Push your branch to GitHub
-This publishes your branch so instructors can review it.
+### Quick Start
 
-* The first time you create your branch and publish it:
-```
-git push -u origin hw1-yourname
-```
-* Every time after, you can just do this while on your branch:
-```
-git push
+1. **Install dependencies** (first time only):
+   ```bash
+   npm install
+   ```
+
+2. **Start the documentation viewer**:
+   ```bash
+   npm run view-docs
+   ```
+
+3. **Open your browser** to http://localhost:3001
+
+The viewer will display all homework assignments, test cases, JSON files, and log files in an easy-to-navigate interface with:
+- Beautiful syntax highlighting
+- Side-by-side diff viewer for test results
+- Resizable sidebar
+- Dark theme optimized for coding
+
+### Running Tests
+
+To run the test suite for homework problems:
+```bash
+npm test
 ```
 
-## 5. Do not push directly to the main branch
-* Your work should only live on your personal branch.
-* The main branch is reserved for starter code and instructor updates.
+## 📂 Repository Structure
+
+- `hw1/`, `hw2/`, `hw3/`, etc. - Homework assignments
+  - `README.md` - Assignment instructions
+  - `test-cases.json` - Test cases for the homework
+  - `boilerplate/` - Starter code
+  - `solutions/` - Example solutions (when available)
+- `test_problems.js` - Test runner script
+- `view_docs.js` - Documentation viewer script
+
+## 💡 Tips
+
+- Use the documentation viewer to easily browse all homework files
+- The viewer automatically detects and displays Expected vs Got differences in test results
+- You can resize the sidebar by dragging the edge
+
+## 🆘 Need Help?
+
+If you encounter any issues or have questions, please reach out to your mentors or check the course documentation.
+
+---
+
+Happy coding! 🚀
