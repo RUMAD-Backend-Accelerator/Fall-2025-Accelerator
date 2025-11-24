@@ -172,6 +172,8 @@ app.get("/", (req, res) => {
 */
 
 app.get("/api/:caseId/tasks", (req, res) => {
+  const caseID = parseInt(req.params.caseID);
+  const { sort, priority} = req.query;
   // TODO: Retrieve caseID parameter and validate caseId
   // TODO: Retrieve tasks using getAllTasks
   // TODO: Handle optional filtering by priority
