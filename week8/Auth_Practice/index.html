@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Goodreads</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2rem;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      text-align: center;
+    }
+    .book {
+      background: white;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .comments {
+      margin-top: 0.5rem;
+      padding-left: 1rem;
+    }
+    .comment-form {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+    input {
+      flex: 1;
+      padding: 0.4rem;
+    }
+    button {
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Logged in!</h2>
+  <button onclick = "logout()">Log Out</button>  
+  <script>
+    async function logout() {
+      const res = await fetch("/api/auth/signout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }
+      });
+
+      window.location.href = "/"
+    }
+  </script>
+</body>
+</html>
