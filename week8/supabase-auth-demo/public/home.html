@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Supabase Auth Demo</title>
+    </head>
+
+    <body>
+        <h1>Supabase Auth Demo</h1>
+        <h2>Home</h2>
+        <button id="logout-btn">Logout</button>
+
+        <button id="retrieve-tasks-btn">Retrieve Your Tasks</button>
+
+        <h2></h2>
+
+        <table id="tasks-table" border="1">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Completed</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!-- Tasks will be loaded into here --->
+            </tbody>
+        </table>
+
+        <script>
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                localStorage.removeItem('access_token');
+                alert('Logged out!');
+                window.location.href = 'login.html';
+            });
+
+            document.getElementById('retrieve-tasks-btn').addEventListener('click', async () => {
+                const token = localStorage.getItem('access_token');
+
+                const res = await fetch('api/tasks', {
+                    method: 'GET',
+                    headers: {'Authorization': `Bearer ${token}`}
+                });
+                const result = await res.json();
+
+                const tbody = document.getElementById('tasks-table').querySelector('tbody');
+                tbody.innerHTML = '';
+
+                if (result.data && result.data.length > 0) {
+                    result.data.forEach((task) => {
+                        const newRow = document.createElement('tr');
+                        newRow.innerHTML = `
+                            <td>${task.title}</td>
+                            <td>${task.description}</td>
+                            <td>${task.completed}</td>
+                        `;
+                        tbody.appendChild(newRow);
+                    })
+                } else {
+                    alert('You have no tasks.');
+                }
+            });
+        </script>
+    </body>
+</html>

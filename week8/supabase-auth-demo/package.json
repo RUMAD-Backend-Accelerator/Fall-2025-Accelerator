@@ -1,0 +1,18 @@
+{
+  "name": "supabase-auth-demo",
+  "version": "1.0.0",
+  "description": "Code for RUMAD 2025 Backend Accelerator supabase authentication demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Liam Ta",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.84.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0"
+  }
+}

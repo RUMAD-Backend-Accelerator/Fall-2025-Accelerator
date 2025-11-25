@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Supabase Auth Demo</title>
+    </head>
+
+    <body>
+        <h1>Supabase Auth Demo</h1>
+        <h2>Login</h2>
+
+        <form id="login-form">
+            <input type="email" id="email-input" placeholder="Email" required />
+            <input type="password" id="password-input" placeholder="Password" required />
+
+            <button type="submit">Login</button>
+        </form>
+
+        <script>
+            document.getElementById('login-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const email = document.getElementById('email-input').value;
+                const password = document.getElementById('password-input').value;
+
+                const res = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json'},
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await res.json();
+
+                if (data.data && data.data.session && data.data.session.access_token) {
+                    localStorage.setItem('access_token', data.data.session.access_token);
+                    alert('Login successful! Access token has been stored.');
+                    window.location.href = 'home.html';
+                } else {
+                    alert(`Login failed: ${data.errorMessage || 'Unknown error'}`);
+                }
+            });
+        </script>
+    </body>
+</html>

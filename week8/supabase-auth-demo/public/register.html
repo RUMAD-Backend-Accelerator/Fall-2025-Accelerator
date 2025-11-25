@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Supabase Auth Demo</title>
+    </head>
+
+    <body>
+        <h1>Supabase Auth Demo</h1>
+        <h2>Register</h2>
+
+        <form id="register-form">
+            <input type="email" id="email-input" placeholder="Email" required />
+            <input type="password" id="password-input" placeholder="Password" required />
+
+            <button type="submit">Register</button>
+        </form>
+
+        <script>
+            document.getElementById('register-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const email = document.getElementById('email-input').value;
+                const password = document.getElementById('password-input').value;
+
+                const res = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json'},
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await res.json();
+
+                if (data.errorMessage) {
+                    alert(`Registration failed: ${data.errorMessage || 'Unknown error'}`);
+                } else {
+                    alert('Registration successful! Please confirm your email before logging in.');
+                }
+            });
+        </script>
+    </body>
+</html>
