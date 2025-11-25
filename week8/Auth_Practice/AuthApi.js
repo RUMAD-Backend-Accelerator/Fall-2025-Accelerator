@@ -18,6 +18,23 @@ app.use(express.json());
 // Signup
 app.post("/api/auth/signup", async (req, res) => {
   // TODO: Call your authentication service - signUpUser()
+  try{
+    const{ username, password} = req.body;
+
+    if(!username || !password){
+      return res.status(400).json({ errorMessage: 'Bad request: missing username or password'})
+    }
+
+    const { data, error } = await supabase.auth.signUp({
+      username,
+      password
+    });
+
+    if (error) {
+      return res.status(400).json({ errorMessage: `Bad request: ${error.message}`})
+    }
+
+  }
 });
 
 // Login
