@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Operations - Books Demo</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <a href="/" class="back-link">← Back to Home</a>
+            <h1>✏️ Update Operations</h1>
+            <p>Modify existing book details and ratings</p>
+        </div>
+
+        <div class="content-box">
+            <h2>Update Book Details</h2>
+            <form id="update-book-form">
+                <div class="form-group">
+                    <label for="updateBookId">Book ID *</label>
+                    <input type="number" id="updateBookId" name="bookId" min="1" required>
+                    <button type="button" onclick="loadBookDetails()" style="margin-top: 0.5rem;">Load Book</button>
+                </div>
+                <div id="book-fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="updateTitle">Title</label>
+                        <input type="text" id="updateTitle" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateAuthor">Author</label>
+                        <input type="text" id="updateAuthor" name="author">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateGenre">Genre</label>
+                        <input type="text" id="updateGenre" name="genre">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateYear">Publication Year</label>
+                        <input type="number" id="updateYear" name="year" min="1000" max="2100">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDescription">Description</label>
+                        <textarea id="updateDescription" name="description" rows="3"></textarea>
+                    </div>
+                    <button type="submit">Update Book</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="content-box">
+            <h2>Update Book Rating</h2>
+            <form id="update-rating-form">
+                <div class="form-group">
+                    <label for="ratingBookId">Book ID *</label>
+                    <input type="number" id="ratingBookId" name="bookId" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="newRating">New Rating (0-5) *</label>
+                    <input type="number" id="newRating" name="rating" min="0" max="5" step="0.1" required>
+                </div>
+                <button type="submit">Update Rating</button>
+            </form>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <script src="/js/update.js"></script>
+</body>
+</html>

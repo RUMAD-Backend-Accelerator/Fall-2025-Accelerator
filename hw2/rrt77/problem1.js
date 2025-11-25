@@ -29,12 +29,12 @@ const taskCases = require('../data/tasks-cases.json'); // imports taskCases arra
 const getAllTasks = (req, res) => {
   // TODO: implement this function
   for (let i = 0; i < taskCases.length; i++)
-  {
-    if (taskCases[i].case_id===req.case_id)
     {
-      return {data: taskCases[i]};
+      if (taskCases[i].case_id===req.case_id)
+      {
+        return {data: taskCases[i]};
+      }
     }
-  }
   throw new Error('Not implemented');
 };
 

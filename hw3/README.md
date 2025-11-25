@@ -15,16 +15,16 @@ Data: `task-cases.json` is provided in this folder. It is an array of task case 
 - `boilerplate/` — student code. **Rename this directory to your NetID (e.g., `am3606`).** Implement solutions only inside files in this directory. ***There is only one problem this week!***
   - `boilerplate/problem1.js` — implement Problem 1.
 
-- `test-problems.js` — test runner you can run locally to exercise your functions.
+- `test_problems.js` — test runner you can run locally to exercise your functions.
 
-- `test-cases.json` - test cases for each problem, accessed by `test-problems.js`. You may add your own test cases if you'd like.
+- `test-cases.json` - test cases for each problem, accessed by `test_problems.js`. You may add your own test cases if you'd like.
 
 ## How to run locally
 
 1. From this folder, run the test runner:
 
 ```bash
-node test-problems.js hw3
+node test_problems.js hw3
 ```
 
 2. Implement the API endpoints inside `boilerplate/*.js`. You will be given some driver functions for basic operations so you can focus on the *Express* part of the exercise. Re-run the test runner to see your results.
@@ -35,7 +35,7 @@ node test-problems.js hw3
 of your renamed  `boilerplate/` folder (e.g. `PREFFERED_FOLDER="am3606"`). 
     - This ensures that your submission files are unique.
     - Keep the filenames and function signatures unchanged.
-    - Enables you to run `test-problems.js` to check your solution.
+    - Enables you to run `test_problems.js` to check your solution.
 2. Create your own branch on the `Fall-2025-Accelerator` public repository. **Title it with your NetID (e.g., `am3606`).**
     - This is the branch you will be working out of throughout the program, and this is how us mentors will be able to track your code.
     - If you already did this for homework 1, you should keep working on that branch.
